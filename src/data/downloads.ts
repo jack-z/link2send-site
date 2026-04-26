@@ -20,10 +20,15 @@ export interface DownloadItem {
 export const currentVersion = "0.5.1";
 export const releaseDate = "2026-04-25";
 
-export const GITHUB_REPO = "link2send/link2send";
+/**
+ * Cloudflare R2 bucket bound to dl.link2send.com.
+ * Upload release artifacts to the bucket root and they become accessible at
+ * https://dl.link2send.com/<filename>.
+ */
+export const DOWNLOAD_HOST = "https://dl.link2send.com";
 
-export function releaseUrl(file: string): string {
-  return `https://github.com/${GITHUB_REPO}/releases/latest/download/${encodeURIComponent(file)}`;
+export function downloadUrl(file: string): string {
+  return `${DOWNLOAD_HOST}/${encodeURIComponent(file)}`;
 }
 
 export const downloads: DownloadItem[] = [
@@ -36,7 +41,7 @@ export const downloads: DownloadItem[] = [
       {
         label: ".dmg (Intel)",
         file: `邻传_${currentVersion}_x64.dmg`,
-        url: releaseUrl(`邻传_${currentVersion}_x64.dmg`),
+        url: downloadUrl(`邻传_${currentVersion}_x64.dmg`),
         note: "x64",
       },
     ],
@@ -51,7 +56,7 @@ export const downloads: DownloadItem[] = [
       {
         label: ".exe Installer",
         file: `邻传_${currentVersion}_x64-setup.exe`,
-        url: releaseUrl(`邻传_${currentVersion}_x64-setup.exe`),
+        url: downloadUrl(`邻传_${currentVersion}_x64-setup.exe`),
         note: "x64",
       },
     ],

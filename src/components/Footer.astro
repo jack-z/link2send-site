@@ -1,8 +1,6 @@
 ---
 import type { Lang } from "@/i18n/languages";
 import { useTranslations } from "@/i18n/utils";
-import { GITHUB_REPO } from "@/data/downloads";
-
 interface Props {
   lang: Lang;
 }
@@ -71,16 +69,6 @@ const year = new Date().getFullYear();
               class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
             >
               {t("docs.title")}
-            </a>
-          </li>
-          <li>
-            <a
-              href={`https://github.com/${GITHUB_REPO}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
-            >
-              {t("footer.github")}
             </a>
           </li>
           <li>
