@@ -1,5 +1,5 @@
-# Force apex (drop the www subdomain)
-https://www.link2send.com/* https://link2send.com/:splat 301!
+# NOTE: Cloudflare Pages _redirects only supports relative URLs.
+# www -> apex is configured at the CF dashboard via Rules -> Redirect Rules.
 
 # Default to English at the root
 / /en/ 302
