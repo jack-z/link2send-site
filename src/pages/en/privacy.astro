@@ -15,7 +15,7 @@ const t = useTranslations(lang);
     <div class="mx-auto max-w-3xl px-4 sm:px-6">
       <article class="prose prose-slate max-w-none dark:prose-invert">
         <h1>Link2Send Privacy Policy</h1>
-        <p><strong>Last Updated: April 6, 2026</strong></p>
+        <p><strong>Last Updated: April 26, 2026</strong></p>
         <p><strong>Effective Date: April 6, 2026</strong></p>
         <p>Welcome to Link2Send (the "App"). We take your privacy very seriously. This Privacy Policy explains how we handle your information. Please read this policy carefully before using the App.</p>
 
@@ -69,7 +69,24 @@ const t = useTranslations(lang);
         </div>
         <p><strong>This App does not access the internet and does not communicate with any external server.</strong> All network communication is confined to your local network.</p>
 
-        <h2>4. Data Security</h2>
+        <h2>4. Media & Device Permissions</h2>
+        <p>This App requests the following device permissions, all of which are activated <strong>only by your explicit action</strong>, never collected in the background, and never sent off your device without your consent:</p>
+        <div class="overflow-x-auto">
+          <table>
+            <thead>
+              <tr><th>Permission</th><th>When It's Used</th><th>Where the Data Goes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Camera</td><td>When you tap the camera button in chat to take a photo, or when you scan a pairing QR code</td><td>The captured photo is sent only to the peer device you selected, over the encrypted LAN channel</td></tr>
+              <tr><td>Microphone</td><td>When you record a video from chat</td><td>Audio travels with the video, only to the peer you selected, over the encrypted LAN channel</td></tr>
+              <tr><td>Photo Library (Read)</td><td>When you tap "select photo" in chat</td><td>The chosen photos are sent only to the peer you selected; we do not scan or index your library</td></tr>
+              <tr><td>Photo Library (Add)</td><td>When you save a received image to Photos</td><td>The image is moved from this app's local storage into your system Photos library on the same device</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>We do not access these permissions in the background, and we do not retain a copy of any captured photo, video, or audio outside of the App's local message history (which itself stays on your device — see Section 2.2).</p>
+
+        <h2>5. Data Security</h2>
         <p>We employ the following measures to protect your data:</p>
         <ol>
           <li><strong>Transfer encryption</strong>: All data transfer between devices uses TLS (Transport Layer Security) with self-signed certificates. Encryption is mandatory and cannot be disabled.</li>
@@ -78,7 +95,7 @@ const t = useTranslations(lang);
           <li><strong>Pairing mechanism</strong>: First-time connections require pairing confirmation via short code or QR code to prevent unauthorized device access.</li>
         </ol>
 
-        <h2>5. Third-Party Services</h2>
+        <h2>6. Third-Party Services</h2>
         <p>This App <strong>does not integrate any third-party cloud service SDKs</strong>, including but not limited to:</p>
         <ul>
           <li>No analytics/statistics SDKs</li>
@@ -89,10 +106,10 @@ const t = useTranslations(lang);
         </ul>
         <p>This App uses certain open-source software components (such as Rust, Tauri, Flutter, and their dependencies). These components do not involve any data collection or network communication. For open-source license information, please refer to the "About" page within the App.</p>
 
-        <h2>6. Children's Privacy</h2>
+        <h2>7. Children's Privacy</h2>
         <p>This App is not intended for children under the age of 13. Since the App does not collect any personal information from any user, it does not collect personal information from children.</p>
 
-        <h2>7. Data Deletion</h2>
+        <h2>8. Data Deletion</h2>
         <p>Since all data is stored locally on your device, you can at any time:</p>
         <ul>
           <li>Delete message history and favorites within the App</li>
@@ -101,10 +118,10 @@ const t = useTranslations(lang);
         </ul>
         <p>No data deletion request needs to be submitted to us.</p>
 
-        <h2>8. Changes to This Policy</h2>
+        <h2>9. Changes to This Policy</h2>
         <p>If this policy is updated, we will notify you through in-app notifications or in the update release notes. Material changes will be communicated with reasonable notice before taking effect.</p>
 
-        <h2>9. Contact Us</h2>
+        <h2>10. Contact Us</h2>
         <p>If you have any questions or suggestions regarding this Privacy Policy, please contact us:</p>
         <ul>
           <li>Email: <a href="mailto:support@link2send.com">support@link2send.com</a></li>
