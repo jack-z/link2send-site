@@ -7,15 +7,120 @@ export async function getStaticPaths() {
   return docs
     .filter((doc) => doc.id.startsWith("zh/"))
     .map((doc) => ({
-      params: { slug: doc.id.replace("zh/", "") },
+      params: { slug: doc.id.replace("zh/", "").replace(/\.md$/, "") },
       props: { doc },
     }));
 }
 
 const { doc } = Astro.props;
 const { Content } = await render(doc);
+const lang = "zh";
+const slug = doc.id.replace("zh/", "").replace(/\.md$/, "");
+const site = "https://link2send.com";
+const pageUrl = `${site}/${lang}/docs/${slug}/`;
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "首页", item: `${site}/${lang}/` },
+    { "@type": "ListItem", position: 2, name: "文档", item: `${site}/${lang}/docs/getting-started/` },
+    { "@type": "ListItem", position: 3, name: doc.data.title, item: pageUrl },
+  ],
+};
+
+const techArticle = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  headline: doc.data.title,
+  description: doc.data.description,
+  inLanguage: "zh-CN",
+  url: pageUrl,
+  author: { "@type": "Organization", name: "邻传 Link2Send", url: site },
+  publisher: {
+    "@type": "Organization",
+    name: "邻传 Link2Send",
+    logo: { "@type": "ImageObject", url: `${site}/icon.png` },
+  },
+};
+
+const faqJsonLd = slug === "faq"
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "邻传需要联网吗？",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "不需要。邻传完全在 LAN 上工作，无需互联网、无云服务器、无账号。",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "邻传免费吗？",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "是的。邻传基于 MIT 协议开源，包括商业用途在内全部免费。",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "支持哪些平台？",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "macOS 与 Windows 已上线，iOS 与 Android 应用商店审核中。Linux 可从源码构建。",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "数据传输如何加密？",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "每条会话基于 TLS 1.3 + 双向证书认证 (mTLS)。加密强制开启，没有明文降级。",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "我的文件会上传到任何服务器吗？",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "不会。文件直接在两台设备之间传输，产品本身没有后端。",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "有文件大小限制吗？",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "没有硬限制。大文件按 2 MB 分块流式传输，50 GB+ 是常规场景。",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "传输中断了怎么办？",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "邻传会保留已确认 chunk 的 manifest。下一次发送时使用同一 task_id，接收端会从最后一个已确认的 chunk 继续。",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "邻传会收集遥测吗？",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "不会。无统计 SDK、无崩溃上报、无广告 ID。应用根本不发起任何外网连接。",
+          },
+        },
+      ],
+    }
+  : null;
 ---
 
-<DocsLayout title={doc.data.title} description={doc.data.description} lang="zh">
+<DocsLayout title={doc.data.title} description={doc.data.description} lang={lang}>
   <Content />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+  <script type="application/ld+json" set:html={JSON.stringify(techArticle)} />
+  {faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 </DocsLayout>

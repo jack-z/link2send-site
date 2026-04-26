@@ -7,15 +7,120 @@ export async function getStaticPaths() {
   return docs
     .filter((doc) => doc.id.startsWith("en/"))
     .map((doc) => ({
-      params: { slug: doc.id.replace("en/", "") },
+      params: { slug: doc.id.replace("en/", "").replace(/\.md$/, "") },
       props: { doc },
     }));
 }
 
 const { doc } = Astro.props;
 const { Content } = await render(doc);
+const lang = "en";
+const slug = doc.id.replace("en/", "").replace(/\.md$/, "");
+const site = "https://link2send.com";
+const pageUrl = `${site}/${lang}/docs/${slug}/`;
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: `${site}/${lang}/` },
+    { "@type": "ListItem", position: 2, name: "Docs", item: `${site}/${lang}/docs/getting-started/` },
+    { "@type": "ListItem", position: 3, name: doc.data.title, item: pageUrl },
+  ],
+};
+
+const techArticle = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  headline: doc.data.title,
+  description: doc.data.description,
+  inLanguage: "en",
+  url: pageUrl,
+  author: { "@type": "Organization", name: "Link2Send", url: site },
+  publisher: {
+    "@type": "Organization",
+    name: "Link2Send",
+    logo: { "@type": "ImageObject", url: `${site}/icon.png` },
+  },
+};
+
+const faqJsonLd = slug === "faq"
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Does Link2Send need an internet connection?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "No. Link2Send works entirely on your LAN. No internet connection, no cloud servers, no accounts.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Is Link2Send free?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Link2Send is released under the MIT License and is fully free, including for commercial use.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What platforms are supported?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "macOS and Windows are available; iOS and Android are submitted for store review. Linux can be built from source.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How is data encrypted in transit?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Every session uses TLS 1.3 with mutual certificate authentication (mTLS). Encryption is mandatory; there is no plaintext fallback.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Are my files stored on any server?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "No. Files travel directly between devices. The product has no backend.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Is there a file size limit?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "No fixed limit. Large files are streamed in 2 MB chunks; we routinely transfer 50 GB+ files.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What happens if the transfer is interrupted?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Link2Send saves a manifest of confirmed chunks. On the next attempt the sender re-uses the same task ID and the receiver continues from the last confirmed chunk.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Does Link2Send collect telemetry?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "No. There is no analytics SDK, no crash reporter, no advertising ID. The app makes no outbound internet connections at all.",
+          },
+        },
+      ],
+    }
+  : null;
 ---
 
-<DocsLayout title={doc.data.title} description={doc.data.description} lang="en">
+<DocsLayout title={doc.data.title} description={doc.data.description} lang={lang}>
   <Content />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+  <script type="application/ld+json" set:html={JSON.stringify(techArticle)} />
+  {faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 </DocsLayout>

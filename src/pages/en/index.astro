@@ -88,8 +88,21 @@ const steps = [
       "@context": "https://schema.org",
       "@type": "Organization",
       name: "Link2Send",
+      alternateName: "邻传",
       url: "https://link2send.com",
       email: "support@link2send.com",
+      logo: "https://link2send.com/icon.png",
+    })}
+  />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Link2Send",
+      alternateName: "邻传",
+      url: "https://link2send.com",
+      inLanguage: ["en", "zh-CN"],
     })}
   />
 </BaseLayout>

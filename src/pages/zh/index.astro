@@ -82,4 +82,27 @@ const steps = [
       downloadUrl: "https://link2send.com/zh/download/",
     })}
   />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "邻传 Link2Send",
+      alternateName: "Link2Send",
+      url: "https://link2send.com",
+      email: "support@link2send.com",
+      logo: "https://link2send.com/icon.png",
+    })}
+  />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "邻传 Link2Send",
+      alternateName: "Link2Send",
+      url: "https://link2send.com",
+      inLanguage: ["zh-CN", "en"],
+    })}
+  />
 </BaseLayout>

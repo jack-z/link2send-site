@@ -7,7 +7,16 @@ interface Props {
   lang: Lang;
   canonicalPath: string;
   image?: string;
+  imageAlt?: string;
   type?: string;
+  keywords?: string[];
+  /** Override og:title/twitter:title (otherwise uses title). Hero pages may want a richer social title. */
+  socialTitle?: string;
+  /** ISO date for og:article:published_time / itemprop datePublished (docs/blog) */
+  publishedTime?: string;
+  modifiedTime?: string;
+  /** Mark page as noindex (e.g. utility/preview pages) */
+  noindex?: boolean;
 }
 
 const {
@@ -15,53 +24,112 @@ const {
   description,
   lang,
   canonicalPath,
-  image = "/og-image.svg",
+  image = "/og-image.png",
+  imageAlt,
   type = "website",
+  keywords,
+  socialTitle,
+  publishedTime,
+  modifiedTime,
+  noindex = false,
 } = Astro.props;
 
 const site = Astro.site!;
 const canonicalUrl = new URL(canonicalPath, site).href;
-const enUrl = new URL(`/en${canonicalPath.replace(/^\/(en|zh)/, "")}`, site).href;
-const zhUrl = new URL(`/zh${canonicalPath.replace(/^\/(en|zh)/, "")}`, site).href;
+const stripLangPath = canonicalPath.replace(/^\/(en|zh)/, "") || "/";
+const enUrl = new URL(`/en${stripLangPath === "/" ? "/" : stripLangPath}`, site).href;
+const zhUrl = new URL(`/zh${stripLangPath === "/" ? "/" : stripLangPath}`, site).href;
 const imageUrl = new URL(image, site).href;
 const locale = lang === "zh" ? "zh_CN" : "en_US";
 const altLocale = lang === "zh" ? "en_US" : "zh_CN";
 const brandName = lang === "zh" ? "邻传" : "Link2Send";
+const fullTitle = `${title} | ${brandName}`;
+const ogTitle = socialTitle ?? fullTitle;
+const altText = imageAlt ?? (lang === "zh"
+  ? "邻传 Link2Send · 局域网加密通讯"
+  : "Link2Send · Encrypted local-network messenger");
+const defaultKeywords = lang === "zh"
+  ? [
+      "邻传",
+      "Link2Send",
+      "局域网传输",
+      "局域网聊天",
+      "P2P 文件传输",
+      "端到端加密",
+      "TLS 1.3",
+      "mTLS",
+      "无云端文件传输",
+      "Mac Windows iOS Android 互传",
+    ]
+  : [
+      "Link2Send",
+      "LAN file transfer",
+      "local network messenger",
+      "peer-to-peer encrypted",
+      "end-to-end encryption",
+      "TLS 1.3",
+      "mTLS",
+      "no cloud file sharing",
+      "Mac Windows iOS Android transfer",
+    ];
+const keywordContent = (keywords ?? defaultKeywords).join(", ");
 ---
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
 
-<title>{title} | {brandName}</title>
+<title>{fullTitle}</title>
 <meta name="description" content={description} />
+<meta name="keywords" content={keywordContent} />
+<meta name="author" content="Link2Send" />
+<meta name="application-name" content="Link2Send" />
+<meta name="format-detection" content="telephone=no" />
+{noindex ? (
+  <meta name="robots" content="noindex,nofollow" />
+) : (
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+)}
+<meta http-equiv="x-ua-compatible" content="IE=edge" />
 
 <link rel="canonical" href={canonicalUrl} />
 <link rel="alternate" hreflang="en" href={enUrl} />
-<link rel="alternate" hreflang="zh" href={zhUrl} />
+<link rel="alternate" hreflang="zh-CN" href={zhUrl} />
 <link rel="alternate" hreflang="x-default" href={enUrl} />
 
 <link rel="icon" type="image/png" sizes="512x512" href="/icon.png" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<meta name="theme-color" content="#0f172a" />
+<link rel="mask-icon" href="/favicon.svg" color="#2563eb" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
 
-<meta property="og:title" content={title} />
+<!-- Open Graph -->
+<meta property="og:title" content={ogTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content={altText} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:type" content={type} />
 <meta property="og:locale" content={locale} />
 <meta property="og:locale:alternate" content={altLocale} />
 <meta property="og:site_name" content="Link2Send" />
+{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
 
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
+<meta name="twitter:title" content={ogTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:image:alt" content={altText} />
 
+<!-- Performance hints -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="dns-prefetch" href="https://github.com" />
 <link
   href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
   rel="stylesheet"
