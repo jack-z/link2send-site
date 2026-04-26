@@ -1,0 +1,31 @@
+---
+// Root page - redirects to appropriate language
+---
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Link2Send - Redirecting...</title>
+    <meta http-equiv="refresh" content="0;url=/en/" />
+    <link rel="alternate" hreflang="en" href="https://link2send.com/en/" />
+    <link rel="alternate" hreflang="zh" href="https://link2send.com/zh/" />
+    <link rel="alternate" hreflang="x-default" href="https://link2send.com/en/" />
+  </head>
+  <body>
+    <script is:inline>
+      const lang = navigator.language || navigator.userLanguage || "en";
+      if (lang.startsWith("zh")) {
+        window.location.replace("/zh/");
+      } else {
+        window.location.replace("/en/");
+      }
+    </script>
+    <noscript>
+      <p>
+        <a href="/en/">English</a> | <a href="/zh/">中文</a>
+      </p>
+    </noscript>
+  </body>
+</html>

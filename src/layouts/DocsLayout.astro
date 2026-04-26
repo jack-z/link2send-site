@@ -1,0 +1,56 @@
+---
+import type { Lang } from "@/i18n/languages";
+import BaseLayout from "./BaseLayout.astro";
+import { useTranslations } from "@/i18n/utils";
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+}
+
+const { title, description, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const sidebarItems = [
+  { href: `/${lang}/docs/getting-started/`, label: t("docs.gettingStarted") },
+  { href: `/${lang}/docs/how-it-works/`, label: t("docs.howItWorks") },
+  { href: `/${lang}/docs/troubleshooting/`, label: t("docs.troubleshooting") },
+  { href: `/${lang}/docs/faq/`, label: t("docs.faq") },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <div class="flex flex-col gap-10 lg:flex-row">
+      <!-- Sidebar -->
+      <aside class="lg:w-56 lg:shrink-0">
+        <h2 class="mb-4 text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          {t("docs.title")}
+        </h2>
+        <nav class="space-y-1">
+          {sidebarItems.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                "block rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                currentPath.includes(item.href.split("/docs/")[1]?.replace("/", ""))
+                  ? "bg-primary-50 text-primary-700 dark:bg-primary-950 dark:text-primary-300"
+                  : "text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800",
+              ]}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <article class="prose prose-slate max-w-none flex-1 dark:prose-invert prose-headings:scroll-mt-20 prose-a:text-primary-600 dark:prose-a:text-primary-400">
+        <slot />
+      </article>
+    </div>
+  </div>
+</BaseLayout>

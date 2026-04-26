@@ -1,0 +1,89 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { useTranslations } from "@/i18n/utils";
+
+const lang = "en";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title="Terms of Service"
+  description="Link2Send Terms of Service — Rules and guidelines for using Link2Send, the local-network file transfer tool."
+  lang={lang}
+>
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <article class="prose prose-slate max-w-none dark:prose-invert">
+        <h1>Link2Send Terms of Service</h1>
+        <p><strong>Last Updated: April 6, 2026</strong></p>
+        <p><strong>Effective Date: April 6, 2026</strong></p>
+        <p>Welcome to Link2Send (the "App"). Please read these Terms of Service (the "Terms") carefully before using the App. By using the App, you acknowledge that you have read, understood, and agree to be bound by these Terms.</p>
+
+        <h2>1. Service Description</h2>
+        <ol>
+          <li>This App is a LAN-based file transfer tool that enables devices on the same local network to transfer files and messages to each other.</li>
+          <li>All features of this App operate locally and within your local network, with no reliance on cloud servers.</li>
+          <li>All existing features of this App are free of charge. New features introduced in the future may require payment, which will be clearly indicated within the App along with pricing details. Existing free features will remain free.</li>
+        </ol>
+
+        <h2>2. Acceptable Use</h2>
+        <p>You agree to abide by the following rules when using the App:</p>
+        <ol>
+          <li><strong>Lawful use</strong>: You must comply with all applicable laws and regulations in your country or region. You may not use this App for any illegal or unauthorized purpose.</li>
+          <li><strong>Lawful content</strong>: You may not use this App to transfer:
+            <ul>
+              <li>Content that violates applicable laws or regulations</li>
+              <li>Content that infringes on the intellectual property rights of others</li>
+              <li>Files containing malware, viruses, or other harmful programs</li>
+              <li>Any other content that violates public order or accepted moral standards</li>
+            </ul>
+          </li>
+          <li><strong>Authorized transfers</strong>: Before transferring files to another device, ensure that the recipient has consented. Devices that have not been paired cannot receive files.</li>
+          <li><strong>Backup responsibility</strong>: In case of transfer failure due to network interruption or other reasons, please maintain your own file backups.</li>
+        </ol>
+
+        <h2>3. Intellectual Property</h2>
+        <ol>
+          <li>The software code, interface design, icons, and name of this App are protected by intellectual property laws.</li>
+          <li>The intellectual property rights of files and content you transfer through the App belong to their original rights holders. This App does not claim any rights over transferred content.</li>
+          <li>You may not decompile, disassemble, reverse-engineer, or otherwise attempt to extract the source code of this App without authorization (except for open-source versions).</li>
+        </ol>
+
+        <h2>4. Disclaimer</h2>
+        <ol>
+          <li><strong>Transferred content</strong>: This App only provides a transfer channel and does not assume any responsibility for reviewing or monitoring the content you transfer. You are solely responsible for the content you transfer.</li>
+          <li><strong>Network environment</strong>: This App relies on a local network environment. We are not responsible for connection failures or transfer interruptions caused by network failures, device malfunctions, firewall settings, or other factors beyond our control.</li>
+          <li><strong>Data security</strong>: While this App employs TLS-encrypted transfer and locally encrypted storage, absolute security cannot be guaranteed. In extreme cases (such as device compromise), we are not liable for data breaches.</li>
+          <li><strong>File integrity</strong>: This App uses chunk-level verification to ensure transfer integrity, but we are not responsible for file corruption caused by device storage failures or other factors outside the App's control.</li>
+          <li><strong>Compatibility</strong>: This App strives to support mainstream operating system versions but does not guarantee flawless operation on all devices and system versions.</li>
+        </ol>
+
+        <h2>5. Changes to These Terms</h2>
+        <p>We reserve the right to revise these Terms as needed. After any changes, we will notify you through in-app notifications or update release notes. Your continued use of the App after changes take effect constitutes acceptance of the revised Terms.</p>
+
+        <h2>6. Termination</h2>
+        <ol>
+          <li>You may stop using the App and uninstall it at any time. All local data will be removed upon uninstallation.</li>
+          <li>If you violate any provision of these Terms, we reserve the right to adjust features or discontinue updates in future versions.</li>
+        </ol>
+
+        <h2>7. Governing Law & Dispute Resolution</h2>
+        <ol>
+          <li>These Terms shall be governed by and construed in accordance with the laws of the People's Republic of China (excluding Hong Kong, Macau, and Taiwan). If the laws of your country or region do not permit this choice of law, the laws of your jurisdiction shall apply.</li>
+          <li>Any dispute arising from these Terms shall first be resolved through amicable negotiation. If negotiation fails, either party may submit the dispute to a court of competent jurisdiction where the App developer is located.</li>
+        </ol>
+
+        <h2>8. Open-Source Components</h2>
+        <p>This App uses certain open-source software components, including but not limited to Rust, Tauri, Flutter, and their related dependencies. These components are distributed under their respective open-source licenses (such as MIT, Apache 2.0, etc.). For complete open-source license information, please refer to the "About" page within the App. The use of these open-source components does not affect the App's privacy commitments to users.</p>
+
+        <h2>9. Contact Us</h2>
+        <p>If you have any questions regarding these Terms, please contact us:</p>
+        <ul>
+          <li>Email: <a href="mailto:support@link2send.com">support@link2send.com</a></li>
+        </ul>
+
+        <p><em>These Terms apply to all client versions of Link2Send, including Windows, macOS, Linux, iOS, and Android.</em></p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

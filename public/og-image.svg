@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Link2Send – encrypted local network file transfer">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g transform="translate(80, 110)" fill="none" stroke="url(#accent)" stroke-width="6" stroke-linecap="round">
+    <circle cx="50" cy="50" r="22"/>
+    <circle cx="160" cy="50" r="22"/>
+    <line x1="72" y1="50" x2="138" y2="50"/>
+  </g>
+
+  <text x="80" y="280" fill="#ffffff" font-family="Inter, 'Noto Sans SC', system-ui, sans-serif" font-size="80" font-weight="700">
+    Link2Send
+  </text>
+  <text x="80" y="345" fill="#cbd5e1" font-family="Inter, 'Noto Sans SC', system-ui, sans-serif" font-size="34" font-weight="500">
+    Encrypted local-network file transfer
+  </text>
+  <text x="80" y="395" fill="#94a3b8" font-family="Inter, 'Noto Sans SC', system-ui, sans-serif" font-size="26">
+    Mac · Windows · iOS · Android — no cloud, no accounts
+  </text>
+
+  <g transform="translate(80, 480)" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#e2e8f0">
+    <rect width="170" height="46" rx="23" fill="#1e293b" stroke="#334155"/>
+    <text x="85" y="29" text-anchor="middle">v0.5.1</text>
+    <rect x="190" width="240" height="46" rx="23" fill="#1e293b" stroke="#334155"/>
+    <text x="310" y="29" text-anchor="middle">TLS 1.3 · mTLS</text>
+    <rect x="450" width="220" height="46" rx="23" fill="#1e293b" stroke="#334155"/>
+    <text x="560" y="29" text-anchor="middle">MIT · Open Source</text>
+  </g>
+</svg>

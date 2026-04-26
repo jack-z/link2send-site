@@ -1,0 +1,21 @@
+---
+import { languages, type Lang } from "@/i18n/languages";
+import { getAlternateLang } from "@/i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const altLang = getAlternateLang(lang);
+const currentPath = Astro.url.pathname;
+const altPath = currentPath.replace(`/${lang}`, `/${altLang}`);
+---
+
+<a
+  href={altPath}
+  class="rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+  aria-label={`Switch to ${languages[altLang]}`}
+>
+  {languages[altLang]}
+</a>

@@ -1,0 +1,129 @@
+---
+import type { Lang } from "@/i18n/languages";
+import { useTranslations } from "@/i18n/utils";
+import { GITHUB_REPO } from "@/data/downloads";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900">
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+      <!-- Brand -->
+      <div class="sm:col-span-2">
+        <a href={`/${lang}/`} class="inline-flex items-center gap-2.5 text-lg font-bold text-slate-900 dark:text-white">
+          <img
+            src="/icon.png"
+            alt=""
+            width="28"
+            height="28"
+            class="h-7 w-7 rounded-lg ring-1 ring-slate-200/60 dark:ring-slate-800"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="tracking-tight">Link2Send</span>
+        </a>
+        <p class="mt-3 max-w-sm text-sm text-slate-500 dark:text-slate-400">
+          {t("footer.description")}
+        </p>
+      </div>
+
+      <!-- Product -->
+      <div>
+        <h3 class="text-sm font-semibold text-slate-900 dark:text-white">
+          {t("footer.product")}
+        </h3>
+        <ul class="mt-3 space-y-2">
+          <li>
+            <a
+              href={`/${lang}/features/`}
+              class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+            >
+              {t("nav.features")}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`/${lang}/download/`}
+              class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+            >
+              {t("nav.download")}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h3 class="text-sm font-semibold text-slate-900 dark:text-white">
+          {t("footer.resources")}
+        </h3>
+        <ul class="mt-3 space-y-2">
+          <li>
+            <a
+              href={`/${lang}/docs/getting-started/`}
+              class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+            >
+              {t("docs.title")}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`https://github.com/${GITHUB_REPO}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+            >
+              {t("footer.github")}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`mailto:${t("footer.email")}`}
+              class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+            >
+              {t("footer.contact")}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h3 class="text-sm font-semibold text-slate-900 dark:text-white">
+          {t("legal.legal")}
+        </h3>
+        <ul class="mt-3 space-y-2">
+          <li>
+            <a
+              href={`/${lang}/privacy/`}
+              class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+            >
+              {t("legal.privacy")}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`/${lang}/terms/`}
+              class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+            >
+              {t("legal.terms")}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 border-t border-slate-200 pt-8 dark:border-slate-800">
+      <p class="text-center text-sm text-slate-400 dark:text-slate-500">
+        &copy; {year} {t("footer.copyright")}. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

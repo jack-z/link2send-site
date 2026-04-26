@@ -1,0 +1,43 @@
+---
+import type { Lang } from "@/i18n/languages";
+import { useTranslations } from "@/i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const stats = [
+  { titleKey: "stats.encryption", descKey: "stats.encryption.desc" },
+  { titleKey: "stats.parallel", descKey: "stats.parallel.desc" },
+  { titleKey: "stats.size", descKey: "stats.size.desc" },
+  { titleKey: "stats.cloud", descKey: "stats.cloud.desc" },
+];
+---
+
+<section class="border-y border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="py-5 text-center">
+      <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-500">
+        {t("stats.kicker")}
+      </span>
+    </div>
+    <div class="grid grid-cols-2 divide-x divide-slate-200 border-t border-slate-200 lg:grid-cols-4 dark:divide-slate-800 dark:border-slate-800">
+      {stats.map((stat, i) => (
+        <div class:list={[
+          "px-5 py-7 sm:px-7 sm:py-8",
+          i >= 2 && "border-t border-slate-200 lg:border-t-0 dark:border-slate-800",
+        ]}>
+          <div class="whitespace-nowrap font-mono text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl dark:text-white tabular-nums">
+            {t(stat.titleKey as any)}
+          </div>
+          <div class="mt-1.5 text-xs text-slate-500 sm:text-sm dark:text-slate-400">
+            {t(stat.descKey as any)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

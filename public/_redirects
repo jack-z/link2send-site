@@ -1,0 +1,12 @@
+# Force apex (drop the www subdomain)
+https://www.link2send.com/* https://link2send.com/:splat 301!
+
+# Default to English at the root
+/ /en/ 302
+
+# Convenience top-level shortcuts
+/download /en/download/ 302
+/features /en/features/ 302
+/docs /en/docs/getting-started/ 302
+/privacy /en/privacy/ 302
+/terms /en/terms/ 302

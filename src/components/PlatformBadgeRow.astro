@@ -1,0 +1,58 @@
+---
+import type { Lang } from "@/i18n/languages";
+import { useTranslations } from "@/i18n/utils";
+
+interface Props {
+  lang: Lang;
+  /** Mute platforms whose status is not yet shipping */
+  pendingPlatforms?: string[];
+}
+
+const { lang, pendingPlatforms = ["iOS", "Android"] } = Astro.props;
+const t = useTranslations(lang);
+
+const platforms: { key: keyof ReturnType<typeof noop>; label: string; iconPath: string }[] = [
+  {
+    key: "macos" as any,
+    label: t("platform.macos"),
+    iconPath:
+      "M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z",
+  },
+  {
+    key: "windows" as any,
+    label: t("platform.windows"),
+    iconPath:
+      "M3 5.548l7.065-0.966v6.822H3V5.548zM3 18.452l7.065 0.966v-6.822H3v5.856zM11.065 4.452L21 3v8.404h-9.935V4.452zM11.065 19.548L21 21v-8.404h-9.935v6.952z",
+  },
+  {
+    key: "ios" as any,
+    label: t("platform.ios"),
+    iconPath:
+      "M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z",
+  },
+  {
+    key: "android" as any,
+    label: t("platform.android"),
+    iconPath:
+      "M17.523 15.34a1 1 0 01-1-1v-4.68a1 1 0 012 0v4.68a1 1 0 01-1 1zm-11.046 0a1 1 0 01-1-1v-4.68a1 1 0 012 0v4.68a1 1 0 01-1 1zm11.405-6.54l1.607-2.788a.333.333 0 10-.577-.333l-1.628 2.823a9.593 9.593 0 00-3.962-.835 9.593 9.593 0 00-3.963.836L7.731 5.68a.333.333 0 10-.578.332L8.76 8.8a8.023 8.023 0 00-4.118 6.482h14.716a8.023 8.023 0 00-4.118-6.482zM9.74 11.32a.667.667 0 110-1.334.667.667 0 010 1.334zm4.52 0a.667.667 0 110-1.334.667.667 0 010 1.334z",
+  },
+];
+
+function noop() {
+  return {} as Record<string, unknown>;
+}
+---
+
+<div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-slate-500 dark:text-slate-400">
+  {platforms.map((p) => {
+    const muted = pendingPlatforms.includes(p.label);
+    return (
+      <div class:list={["flex items-center gap-2", muted && "opacity-50"]} title={p.label}>
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d={p.iconPath} />
+        </svg>
+        <span class="text-sm font-medium">{p.label}</span>
+      </div>
+    );
+  })}
+</div>

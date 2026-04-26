@@ -1,0 +1,68 @@
+---
+import type { Lang } from "@/i18n/languages";
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  canonicalPath: string;
+  image?: string;
+  type?: string;
+}
+
+const {
+  title,
+  description,
+  lang,
+  canonicalPath,
+  image = "/og-image.svg",
+  type = "website",
+} = Astro.props;
+
+const site = Astro.site!;
+const canonicalUrl = new URL(canonicalPath, site).href;
+const enUrl = new URL(`/en${canonicalPath.replace(/^\/(en|zh)/, "")}`, site).href;
+const zhUrl = new URL(`/zh${canonicalPath.replace(/^\/(en|zh)/, "")}`, site).href;
+const imageUrl = new URL(image, site).href;
+const locale = lang === "zh" ? "zh_CN" : "en_US";
+const altLocale = lang === "zh" ? "en_US" : "zh_CN";
+const brandName = lang === "zh" ? "邻传" : "Link2Send";
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{title} | {brandName}</title>
+<meta name="description" content={description} />
+
+<link rel="canonical" href={canonicalUrl} />
+<link rel="alternate" hreflang="en" href={enUrl} />
+<link rel="alternate" hreflang="zh" href={zhUrl} />
+<link rel="alternate" hreflang="x-default" href={enUrl} />
+
+<link rel="icon" type="image/png" sizes="512x512" href="/icon.png" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0f172a" />
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:type" content={type} />
+<meta property="og:locale" content={locale} />
+<meta property="og:locale:alternate" content={altLocale} />
+<meta property="og:site_name" content="Link2Send" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>

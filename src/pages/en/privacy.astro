@@ -1,0 +1,117 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { useTranslations } from "@/i18n/utils";
+
+const lang = "en";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="Link2Send Privacy Policy — Learn how we protect your data. No cloud servers, no accounts, no data collection."
+  lang={lang}
+>
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <article class="prose prose-slate max-w-none dark:prose-invert">
+        <h1>Link2Send Privacy Policy</h1>
+        <p><strong>Last Updated: April 6, 2026</strong></p>
+        <p><strong>Effective Date: April 6, 2026</strong></p>
+        <p>Welcome to Link2Send (the "App"). We take your privacy very seriously. This Privacy Policy explains how we handle your information. Please read this policy carefully before using the App.</p>
+
+        <h2>1. Our Core Privacy Commitment</h2>
+        <p><strong>This App is a LAN-only file transfer tool. There are no cloud servers, no account registration, and we do not collect, upload, or store any of your personal data.</strong></p>
+        <p>All files and messages you transfer through this App are sent directly between your device and the target device on the same local network. Nothing passes through any third-party server.</p>
+
+        <h2>2. Information We Collect</h2>
+        <h3>2.1 We do NOT collect the following:</h3>
+        <ul>
+          <li>Your name, phone number, email, or any identity information</li>
+          <li>The content of your transferred files or messages</li>
+          <li>Your geographic location</li>
+          <li>Your contacts, photos, or other app data</li>
+          <li>Device advertising identifiers (IDFA/GAID)</li>
+          <li>Any usage analytics or behavioral data</li>
+        </ul>
+
+        <h3>2.2 Data stored locally on your device:</h3>
+        <p>The following data is stored only on your device and is never uploaded to any server:</p>
+        <div class="overflow-x-auto">
+          <table>
+            <thead>
+              <tr><th>Data Type</th><th>Purpose</th><th>Storage Location</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Device key pair</td><td>Establishing encrypted connections</td><td>App local data directory</td></tr>
+              <tr><td>Device nickname & avatar</td><td>Identifying your device on the local network</td><td>App local data directory</td></tr>
+              <tr><td>Session & message history</td><td>Viewing past transfer records</td><td>Local SQLite database (encrypted)</td></tr>
+              <tr><td>Favorites</td><td>Saving important messages</td><td>Local SQLite database</td></tr>
+              <tr><td>Received files</td><td>Files received from other devices</td><td>Default: ~/Downloads/Link2Send/</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <blockquote>
+          <p><strong>Please note</strong>: Received files are stored in plaintext in your device's download directory and are not automatically encrypted. Please keep your device secure to prevent unauthorized physical access to these files.</p>
+        </blockquote>
+
+        <h2>3. Network Permissions</h2>
+        <p>This App requires the following network permissions, <strong>used solely for device discovery and file transfer within your local network</strong>:</p>
+        <div class="overflow-x-auto">
+          <table>
+            <thead>
+              <tr><th>Permission</th><th>Purpose</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Local network access</td><td>Discovering other devices on the same LAN via UDP broadcast</td></tr>
+              <tr><td>TCP network communication</td><td>Establishing TLS-encrypted connections for file transfer</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>This App does not access the internet and does not communicate with any external server.</strong> All network communication is confined to your local network.</p>
+
+        <h2>4. Data Security</h2>
+        <p>We employ the following measures to protect your data:</p>
+        <ol>
+          <li><strong>Transfer encryption</strong>: All data transfer between devices uses TLS (Transport Layer Security) with self-signed certificates. Encryption is mandatory and cannot be disabled.</li>
+          <li><strong>Local encryption</strong>: Message history is encrypted in the local database using AES-256-GCM.</li>
+          <li><strong>Device verification</strong>: Each device generates a unique key pair and self-signed certificate, verified by certificate fingerprint (SHA-256).</li>
+          <li><strong>Pairing mechanism</strong>: First-time connections require pairing confirmation via short code or QR code to prevent unauthorized device access.</li>
+        </ol>
+
+        <h2>5. Third-Party Services</h2>
+        <p>This App <strong>does not integrate any third-party cloud service SDKs</strong>, including but not limited to:</p>
+        <ul>
+          <li>No analytics/statistics SDKs</li>
+          <li>No advertising SDKs</li>
+          <li>No push notification SDKs</li>
+          <li>No social sharing SDKs</li>
+          <li>No crash reporting SDKs</li>
+        </ul>
+        <p>This App uses certain open-source software components (such as Rust, Tauri, Flutter, and their dependencies). These components do not involve any data collection or network communication. For open-source license information, please refer to the "About" page within the App.</p>
+
+        <h2>6. Children's Privacy</h2>
+        <p>This App is not intended for children under the age of 13. Since the App does not collect any personal information from any user, it does not collect personal information from children.</p>
+
+        <h2>7. Data Deletion</h2>
+        <p>Since all data is stored locally on your device, you can at any time:</p>
+        <ul>
+          <li>Delete message history and favorites within the App</li>
+          <li>Manually delete received files</li>
+          <li>Uninstall the App to completely remove all local data</li>
+        </ul>
+        <p>No data deletion request needs to be submitted to us.</p>
+
+        <h2>8. Changes to This Policy</h2>
+        <p>If this policy is updated, we will notify you through in-app notifications or in the update release notes. Material changes will be communicated with reasonable notice before taking effect.</p>
+
+        <h2>9. Contact Us</h2>
+        <p>If you have any questions or suggestions regarding this Privacy Policy, please contact us:</p>
+        <ul>
+          <li>Email: <a href="mailto:support@link2send.com">support@link2send.com</a></li>
+        </ul>
+
+        <p><em>This Privacy Policy applies to all client versions of Link2Send, including Windows, macOS, Linux, iOS, and Android.</em></p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

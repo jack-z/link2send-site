@@ -1,0 +1,63 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import FeatureCard from "@/components/FeatureCard.astro";
+import CTASection from "@/components/CTASection.astro";
+import { useTranslations } from "@/i18n/utils";
+import { features, featureGroups, type FeatureGroup } from "@/data/features";
+
+const lang = "zh";
+const t = useTranslations(lang);
+
+const grouped: Record<FeatureGroup, typeof features> = {
+  discovery: [],
+  security: [],
+  experience: [],
+  privacy: [],
+};
+for (const f of features) grouped[f.group].push(f);
+---
+
+<BaseLayout
+  title="功能特性"
+  description="邻传 v0.5.1 功能：TLS 连接池、双向 mTLS 认证、NAT 反向 slot、路径遍历守卫、AES-256-GCM 加密消息库、聊天式传输。"
+  lang={lang}
+>
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="mx-auto max-w-2xl text-center">
+        <h1 class="text-4xl font-bold text-slate-900 sm:text-5xl dark:text-white">
+          {t("features.title")}
+        </h1>
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">
+          {t("features.subtitle")}
+        </p>
+      </div>
+
+      <div class="mt-16 space-y-16">
+        {featureGroups.map((g) => (
+          <div>
+            <div class="mb-6 max-w-3xl">
+              <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl dark:text-white">
+                {t(`features.group.${g}.title` as any)}
+              </h2>
+              <p class="mt-2 text-base text-slate-600 dark:text-slate-300">
+                {t(`features.group.${g}.desc` as any)}
+              </p>
+            </div>
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {grouped[g].map((feature) => (
+                <FeatureCard
+                  icon={feature.iconKey}
+                  title={t(feature.titleKey as any)}
+                  description={t(feature.descKey as any)}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection lang={lang} />
+</BaseLayout>

@@ -1,0 +1,130 @@
+---
+import type { Lang } from "@/i18n/languages";
+import { useTranslations } from "@/i18n/utils";
+import type { DownloadItem } from "@/data/downloads";
+import { currentVersion } from "@/data/downloads";
+
+interface Props {
+  item: DownloadItem;
+  lang: Lang;
+  isRecommended?: boolean;
+}
+
+const { item, lang, isRecommended = false } = Astro.props;
+const t = useTranslations(lang);
+
+const isStable = item.status === "stable";
+const isPending = item.status === "pending-review";
+
+const statusLabel =
+  item.status === "stable"
+    ? t("download.status.stable")
+    : item.status === "pending-review"
+      ? t("download.status.pendingReview")
+      : item.status === "beta"
+        ? t("download.status.beta")
+        : t("download.status.planned");
+
+const statusBadgeClass =
+  item.status === "stable"
+    ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300"
+    : item.status === "beta"
+      ? "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300"
+      : "bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-400";
+---
+
+<div
+  data-platform={item.platform}
+  class:list={[
+    "flex h-full flex-col rounded-2xl border bg-white p-6 transition dark:bg-slate-900",
+    isRecommended
+      ? "border-primary-300 shadow-lg ring-2 ring-primary-200 dark:border-primary-700 dark:ring-primary-900/60"
+      : "border-slate-200 hover:shadow-md dark:border-slate-800",
+  ]}
+>
+  <div class="mb-4 flex items-center justify-between gap-3">
+    <span class="text-2xl font-bold text-slate-900 dark:text-white">
+      {item.platform}
+    </span>
+    <span class:list={["rounded-full px-2.5 py-0.5 text-xs font-semibold", statusBadgeClass]}>
+      {statusLabel}
+    </span>
+  </div>
+
+  {isStable ? (
+    <div class="space-y-2">
+      {item.formats.map((fmt) => (
+        <a
+          href={fmt.url || "#"}
+          rel="noopener"
+          class="flex items-center justify-between rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:border-primary-300 hover:bg-primary-50 dark:border-slate-700 dark:text-slate-200 dark:hover:border-primary-600 dark:hover:bg-primary-950"
+        >
+          <span class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            {fmt.label}
+          </span>
+          {fmt.note && (
+            <span class="text-xs text-slate-400 dark:text-slate-500">
+              {fmt.note}
+            </span>
+          )}
+        </a>
+      ))}
+    </div>
+  ) : isPending ? (
+    <div class="rounded-lg bg-slate-50 p-4 dark:bg-slate-800/60">
+      <p class="mb-2 text-sm text-slate-600 dark:text-slate-300">
+        {item.formats[0]?.label}
+      </p>
+      <form
+        action="mailto:support@link2send.com"
+        method="get"
+        class="flex flex-col gap-2"
+      >
+        <input
+          type="hidden"
+          name="subject"
+          value={`Notify me when ${item.platform} ships`}
+        />
+        <input
+          type="email"
+          name="body"
+          required
+          placeholder={t("download.notify.placeholder")}
+          class="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+        />
+        <button
+          type="submit"
+          class="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-primary-700"
+        >
+          {t("download.notify.cta")}
+        </button>
+      </form>
+    </div>
+  ) : (
+    <p class="rounded-lg bg-slate-100 py-3 text-center text-sm text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+      {statusLabel}
+    </p>
+  )}
+
+  {isStable && item.formats.some((f) => f.sha256) && (
+    <details class="mt-3 text-xs text-slate-500 dark:text-slate-400">
+      <summary class="cursor-pointer select-none">{t("download.checksum.title")}</summary>
+      <ul class="mt-2 space-y-1 font-mono break-all">
+        {item.formats.filter((f) => f.sha256).map((f) => (
+          <li>
+            <span class="text-slate-400">{f.label}:</span>{" "}
+            <span>{f.sha256}</span>
+          </li>
+        ))}
+      </ul>
+    </details>
+  )}
+
+  <div class="mt-4 flex flex-1 items-end justify-between text-xs text-slate-400 dark:text-slate-500">
+    <span>{t("download.version")} {currentVersion}</span>
+    <span>{item.systemReq}</span>
+  </div>
+</div>

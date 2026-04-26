@@ -1,0 +1,53 @@
+---
+import type { Lang } from "@/i18n/languages";
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  canonicalPath?: string;
+  image?: string;
+  type?: string;
+}
+
+const { title, description, lang, image, type } = Astro.props;
+const canonicalPath = Astro.props.canonicalPath || Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      lang={lang}
+      canonicalPath={canonicalPath}
+      image={image}
+      type={type}
+    />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <Header lang={lang} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>
+
+<script is:inline>
+  // Apply theme before paint to avoid flash
+  (function () {
+    const theme = localStorage.getItem("theme");
+    if (
+      theme === "dark" ||
+      (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    }
+  })();
+</script>

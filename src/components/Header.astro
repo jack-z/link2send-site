@@ -1,0 +1,95 @@
+---
+import type { Lang } from "@/i18n/languages";
+import { useTranslations } from "@/i18n/utils";
+import { getLocalizedNav } from "@/data/navigation";
+import ThemeToggle from "./ThemeToggle.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const nav = getLocalizedNav(lang);
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-lg dark:border-slate-800 dark:bg-slate-950/80"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+    <a href={`/${lang}/`} class="flex items-center gap-2.5 text-lg font-bold text-slate-900 dark:text-white">
+      <img
+        src="/icon.png"
+        alt=""
+        width="32"
+        height="32"
+        class="h-7 w-7 rounded-lg shadow-sm ring-1 ring-slate-200/60 dark:ring-slate-800"
+        loading="eager"
+        decoding="async"
+      />
+      <span class="tracking-tight">Link2Send</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden items-center gap-1 md:flex">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+            currentPath.startsWith(item.href) && item.href !== `/${lang}/`
+              ? "bg-primary-50 text-primary-700 dark:bg-primary-950 dark:text-primary-300"
+              : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white",
+          ]}
+        >
+          {t(item.labelKey as any)}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-1">
+      <LanguageSwitcher lang={lang} />
+      <ThemeToggle />
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        class="rounded-lg p-2 text-slate-500 hover:bg-slate-100 md:hidden dark:text-slate-400 dark:hover:bg-slate-800"
+        aria-label="Menu"
+      >
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav
+    id="mobile-menu"
+    class="hidden border-t border-slate-200 px-4 pb-4 md:hidden dark:border-slate-800"
+  >
+    {nav.map((item) => (
+      <a
+        href={item.href}
+        class:list={[
+          "block rounded-lg px-3 py-2 text-sm font-medium",
+          currentPath.startsWith(item.href) && item.href !== `/${lang}/`
+            ? "bg-primary-50 text-primary-700 dark:bg-primary-950 dark:text-primary-300"
+            : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800",
+        ]}
+      >
+        {t(item.labelKey as any)}
+      </a>
+    ))}
+  </nav>
+</header>
+
+<script is:inline>
+  document.getElementById("mobile-menu-btn")?.addEventListener("click", () => {
+    document.getElementById("mobile-menu")?.classList.toggle("hidden");
+  });
+</script>
