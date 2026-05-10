@@ -63,7 +63,7 @@ No fixed limit. Large files are streamed in 2 MB chunks; we routinely transfer 5
 Link2Send saves a manifest of confirmed chunks. On the next attempt the sender re-uses the same task ID and the receiver continues from the last confirmed chunk.
 
 ### What happens if my computer loses power mid-transfer?
-v0.5.1 enforces strict fsync ordering between chunk write, manifest update and ACK. After power loss the partial file and manifest are consistent — you can resume safely.
+v0.7.0 enforces strict fsync ordering between chunk write, manifest update and ACK. After power loss the partial file and manifest are consistent — you can resume safely.
 
 ### Where are received files saved?
 Default: `~/Downloads/Link2Send/`. Configurable in Settings.

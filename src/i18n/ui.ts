@@ -102,7 +102,7 @@ export const ui = {
     // Features page
     "features.title": "Features",
     "features.subtitle":
-      "Everything Link2Send v0.5.1 ships, grouped by what it does for you.",
+      "Everything Link2Send v0.7.0 ships, grouped by what it does for you.",
 
     // Feature groups
     "features.group.discovery.title": "Discovery & pairing",
@@ -320,7 +320,7 @@ export const ui = {
     // Features page
     "features.title": "功能特性",
     "features.subtitle":
-      "邻传 v0.5.1 的全部能力，按它能为你做什么分组呈现。",
+      "邻传 v0.7.0 的全部能力，按它能为你做什么分组呈现。",
 
     // Feature groups
     "features.group.discovery.title": "发现与配对",

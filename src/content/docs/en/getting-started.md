@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-description: Install Link2Send v0.5.1 and run your first encrypted transfer in under five minutes.
+description: Install Link2Send v0.7.0 and run your first encrypted transfer in under five minutes.
 order: 1
 ---
 

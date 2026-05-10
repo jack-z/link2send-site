@@ -1,12 +1,12 @@
 ---
 title: How It Works
-description: Architecture overview of Link2Send v0.5.1 — discovery, mTLS session, connection pool, and integrity guarantees.
+description: Architecture overview of Link2Send v0.7.0 — discovery, mTLS session, connection pool, and integrity guarantees.
 order: 2
 ---
 
 # How It Works
 
-Link2Send is a **peer-to-peer** application. There are no central servers — devices on the same LAN talk to each other directly. This page is a technical overview of v0.5.1.
+Link2Send is a **peer-to-peer** application. There are no central servers — devices on the same LAN talk to each other directly. This page is a technical overview of v0.7.0.
 
 ## Layers
 
@@ -43,16 +43,16 @@ If broadcast is blocked by a router or firewall, Link2Send falls back to **adapt
 
 Pairing pins the peer's fingerprint. Future connections check the fingerprint on every TLS handshake and refuse on mismatch, blocking impersonation even on a compromised LAN.
 
-## The session connection pool (v0.5.1)
+## The session connection pool (v0.7.0)
 
-Earlier versions opened one TCP connection per file. v0.4.1 introduced a **session-level pool** that v0.5.1 hardens:
+Earlier versions opened one TCP connection per file. v0.4.1 introduced a **session-level pool** that v0.7.0 hardens:
 
 - Each session keeps **4–8 long-lived TLS streams** (slots).
 - Files ≤ 50 MB are sent on one slot end-to-end.
 - Larger files are split across up to **4 slots in parallel**.
 - A single session caps at **5 concurrent files**.
 - When the sender can't dial the receiver (asymmetric NAT, strict firewall), the sender requests a **reverse slot**: the receiver dials back over the existing session.
-- If a slot drops mid-transfer, v0.5.1 attempts up to 3 reconnects with 250 ms / 1 s / 4 s exponential back-off plus jitter.
+- If a slot drops mid-transfer, v0.7.0 attempts up to 3 reconnects with 250 ms / 1 s / 4 s exponential back-off plus jitter.
 
 ## File transfer
 
@@ -66,7 +66,7 @@ Each file is split into **2 MB chunks**. For every chunk the receiver:
 
 This strict ordering means a sudden power loss can never produce a "complete" file with zeroed regions. If the connection drops, the next attempt resumes from the last `Acked` chunk by reusing the partial file plus manifest.
 
-## Receiver hardening (v0.5.1)
+## Receiver hardening (v0.7.0)
 
 - **Path-traversal guard** — the receiver rejects absolute paths, `..` segments, NUL bytes, and Windows reserved names. A malicious peer cannot write outside the receive folder.
 - **Atomic deduplication** — when two transfers arrive with the same filename, an `O_EXCL` reservation prevents a silent overwrite; the second file gets a numeric suffix.

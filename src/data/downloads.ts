@@ -17,8 +17,8 @@ export interface DownloadItem {
   notice?: "macOSGatekeeper" | "windowsSmartscreen";
 }
 
-export const currentVersion = "0.5.1";
-export const releaseDate = "2026-04-25";
+export const currentVersion = "0.7.0";
+export const releaseDate = "2026-05-10";
 
 /**
  * Release host serving signed installers under /releases/latest/.

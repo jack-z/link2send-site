@@ -19,9 +19,9 @@ Run through the list in order — most cases land in the first three.
 
 ## "Receiving…" looks stuck
 
-If the sender shows "Interrupted" but the receiver still says "Receiving…", you're likely on a build older than v0.5.1. Update both devices.
+If the sender shows "Interrupted" but the receiver still says "Receiving…", you're likely on a build older than v0.7.0. Update both devices.
 
-In v0.5.1, the receiver flips to an interrupted state in milliseconds when the sender's connection drops. The partial file and manifest are kept on disk so the next retry resumes safely.
+In v0.7.0, the receiver flips to an interrupted state in milliseconds when the sender's connection drops. The partial file and manifest are kept on disk so the next retry resumes safely.
 
 ## A transfer is much slower than expected
 
@@ -31,7 +31,7 @@ In v0.5.1, the receiver flips to an interrupted state in milliseconds when the s
 
 ## "First open" warning on macOS
 
-The 0.5.1 build is not yet Apple-notarized. The first time you launch:
+The 0.7.0 build is not yet Apple-notarized. The first time you launch:
 
 1. Right-click the app in Finder → **Open**.
 2. Click **Open** in the confirmation dialog.
@@ -47,7 +47,7 @@ Windows SmartScreen may flag the installer the first time. Click **More info** �
 If you suspect a file is corrupted:
 
 - Check the SHA-256 published on the [download page](/en/download/) (when available).
-- Compare the original file's SHA-256 with the received copy. v0.5.1 verifies each chunk as it arrives, so a corrupted result is rare — usually a sign of a disk issue on either side.
+- Compare the original file's SHA-256 with the received copy. v0.7.0 verifies each chunk as it arrives, so a corrupted result is rare — usually a sign of a disk issue on either side.
 
 ## Still stuck?
 

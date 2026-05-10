@@ -63,7 +63,7 @@ order: 3
 邻传会保留已确认 chunk 的 manifest。下一次发送时使用同一 task_id，接收端会从最后一个已确认的 chunk 继续。
 
 ### 传输中突然断电会怎样？
-v0.5.1 在 chunk 写盘 → manifest → ACK 之间强制 fsync 顺序。掉电后 partial 文件与 manifest 仍然一致，可以安全续传。
+v0.7.0 在 chunk 写盘 → manifest → ACK 之间强制 fsync 顺序。掉电后 partial 文件与 manifest 仍然一致，可以安全续传。
 
 ### 接收文件保存在哪里？
 默认 `~/Downloads/Link2Send/`，可在设置中修改。
