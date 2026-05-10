@@ -15,14 +15,14 @@ No. Link2Send works entirely on your LAN. No internet connection, no cloud serve
 Yes. Link2Send is released under the MIT License and is fully free, including for commercial use.
 
 ### What platforms are supported?
-- **macOS** — available
+- **macOS** — available (Universal binary; Intel + Apple Silicon)
 - **Windows** — available
-- **iOS** — submitted to App Store review
+- **iOS** — available on the [App Store](https://apps.apple.com/us/app/link2send/id6763858424)
 - **Android** — submitted to Google Play review
 - **Linux** — buildable from source; no official release yet
 
-### Why is the macOS build x64-only?
-The 0.5.1 macOS build is an Intel binary. It runs on Apple Silicon Macs through Rosetta. A native Apple Silicon build is on the roadmap.
+### Does the macOS build run natively on Apple Silicon?
+Yes. The macOS download is a Universal binary that runs natively on both Intel and Apple Silicon Macs — no Rosetta needed.
 
 ## Connectivity
 

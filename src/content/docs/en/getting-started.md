@@ -12,9 +12,10 @@ This guide walks you through installing Link2Send on two devices, pairing them, 
 
 1. Open the [Download page](/en/download/) on each device.
 2. Pick the build that matches your platform:
-   - **macOS** → `邻传_0.5.1_x64.dmg` (Intel build; runs on Apple Silicon via Rosetta)
-   - **Windows** → `邻传_0.5.1_x64-setup.exe`
-   - **iOS / Android** → in store review; subscribe on the download page to be notified
+   - **macOS** → `Link2Send-mac-universal.dmg` (universal build for Intel and Apple Silicon)
+   - **Windows** → `Link2Send-windows-x64.exe`
+   - **iOS** → install from the [App Store](https://apps.apple.com/us/app/link2send/id6763858424)
+   - **Android** → in store review; subscribe on the download page to be notified
 3. Install and launch Link2Send. On first launch the app generates a unique device certificate locally — no sign-up, no email.
 
 ## 2. Put both devices on the same network

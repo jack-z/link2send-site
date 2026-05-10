@@ -15,14 +15,14 @@ order: 3
 是的。邻传基于 MIT 协议开源，包括商业用途在内全部免费。
 
 ### 支持哪些平台？
-- **macOS** —— 已上线
+- **macOS** —— 已上线（通用版本，Intel + Apple Silicon 二合一）
 - **Windows** —— 已上线
-- **iOS** —— 已提交 App Store 审核
+- **iOS** —— 已上架 [App Store](https://apps.apple.com/us/app/link2send/id6763858424)
 - **Android** —— 已提交 Google Play 审核
 - **Linux** —— 可从源码构建，暂无官方发布
 
-### 为什么 macOS 版本只有 x64？
-0.5.1 的 macOS 包是 Intel 二进制，可在 Apple Silicon 上通过 Rosetta 运行。原生 ARM 包在路线图中。
+### macOS 版本是否原生支持 Apple Silicon？
+支持。macOS 安装包是通用版本（Universal Binary），在 Intel 与 Apple Silicon Mac 上都原生运行，无需 Rosetta。
 
 ## 连通性
 

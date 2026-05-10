@@ -12,9 +12,10 @@ order: 1
 
 1. 打开各自设备上的 [下载页](/zh/download/)。
 2. 选择对应平台的安装包：
-   - **macOS** → `邻传_0.5.1_x64.dmg`（Intel 构建；Apple Silicon 通过 Rosetta 运行）
-   - **Windows** → `邻传_0.5.1_x64-setup.exe`
-   - **iOS / Android** → 应用商店审核中；可在下载页留邮箱以获取上线通知
+   - **macOS** → `Link2Send-mac-universal.dmg`（Intel 与 Apple Silicon 通用版本）
+   - **Windows** → `Link2Send-windows-x64.exe`
+   - **iOS** → 直接从 [App Store](https://apps.apple.com/us/app/link2send/id6763858424) 安装
+   - **Android** → 应用商店审核中；可在下载页留邮箱以获取上线通知
 3. 安装并启动邻传。首次启动会在本地生成唯一的设备证书——无需注册，无需邮箱。
 
 ## 2. 把两台设备接入同一网络

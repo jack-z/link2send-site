@@ -21,14 +21,12 @@ export const currentVersion = "0.5.1";
 export const releaseDate = "2026-04-25";
 
 /**
- * Cloudflare R2 bucket bound to dl.link2send.com.
- * Upload release artifacts to the bucket root and they become accessible at
- * https://dl.link2send.com/<filename>.
+ * Release host serving signed installers under /releases/latest/.
  */
-export const DOWNLOAD_HOST = "https://dl.link2send.com";
+export const DOWNLOAD_HOST = "https://download.link2send.com";
 
 export function downloadUrl(file: string): string {
-  return `${DOWNLOAD_HOST}/${encodeURIComponent(file)}`;
+  return `${DOWNLOAD_HOST}/releases/latest/${file}`;
 }
 
 export const downloads: DownloadItem[] = [
@@ -39,10 +37,10 @@ export const downloads: DownloadItem[] = [
     notice: "macOSGatekeeper",
     formats: [
       {
-        label: ".dmg (Intel)",
-        file: `邻传_${currentVersion}_x64.dmg`,
-        url: downloadUrl(`邻传_${currentVersion}_x64.dmg`),
-        note: "x64",
+        label: ".dmg (Universal)",
+        file: "Link2Send-mac-universal.dmg",
+        url: downloadUrl("Link2Send-mac-universal.dmg"),
+        note: "Intel + Apple Silicon",
       },
     ],
     systemReq: "macOS 11+",
@@ -55,8 +53,8 @@ export const downloads: DownloadItem[] = [
     formats: [
       {
         label: ".exe Installer",
-        file: `邻传_${currentVersion}_x64-setup.exe`,
-        url: downloadUrl(`邻传_${currentVersion}_x64-setup.exe`),
+        file: "Link2Send-windows-x64.exe",
+        url: downloadUrl("Link2Send-windows-x64.exe"),
         note: "x64",
       },
     ],
@@ -65,10 +63,11 @@ export const downloads: DownloadItem[] = [
   {
     platform: "iOS",
     icon: "ios",
-    status: "pending-review",
+    status: "stable",
     formats: [
       {
         label: "App Store",
+        url: "https://apps.apple.com/us/app/link2send/id6763858424",
       },
     ],
     systemReq: "iOS 13+",
