@@ -37,9 +37,10 @@ export const downloads: DownloadItem[] = [
     notice: "macOSGatekeeper",
     formats: [
       {
-        label: ".dmg Universal",
+        label: ".dmg Installer",
         file: "Link2Send-mac-universal.dmg",
         url: downloadUrl("Link2Send-mac-universal.dmg"),
+        note: "Universal",
       },
     ],
     systemReq: "macOS 11+",
