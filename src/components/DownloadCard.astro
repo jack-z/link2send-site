@@ -2,7 +2,6 @@
 import type { Lang } from "@/i18n/languages";
 import { useTranslations } from "@/i18n/utils";
 import type { DownloadItem } from "@/data/downloads";
-import { currentVersion } from "@/data/downloads";
 
 interface Props {
   item: DownloadItem;
@@ -124,7 +123,7 @@ const statusBadgeClass =
   )}
 
   <div class="mt-4 flex flex-1 items-end justify-between text-xs text-slate-400 dark:text-slate-500">
-    <span>{t("download.version")} {currentVersion}</span>
+    <span>{t("download.latest")}</span>
     <span>{item.systemReq}</span>
   </div>
 </div>

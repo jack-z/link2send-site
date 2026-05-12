@@ -17,8 +17,10 @@ export interface DownloadItem {
   notice?: "macOSGatekeeper" | "windowsSmartscreen";
 }
 
-export const currentVersion = "0.7.0";
-export const releaseDate = "2026-05-10";
+// Used only by JSON-LD structured data (SoftwareApplication) for SEO.
+// Visible UI shows "Latest version" instead, so this can be updated less frequently.
+export const currentVersion = "0.7.1";
+export const releaseDate = "2026-05-12";
 
 /**
  * Release host serving signed installers under /releases/latest/.

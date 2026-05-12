@@ -102,7 +102,7 @@ export const ui = {
     // Features page
     "features.title": "Features",
     "features.subtitle":
-      "Everything Link2Send v0.7.0 ships, grouped by what it does for you.",
+      "Everything the latest Link2Send ships, grouped by what it does for you.",
 
     // Feature groups
     "features.group.discovery.title": "Discovery & pairing",
@@ -173,6 +173,7 @@ export const ui = {
     "download.subtitle":
       "Free and open source under the MIT License. Pick your platform.",
     "download.version": "Version",
+    "download.latest": "Latest version",
     "download.released": "Released",
     "download.systemReq": "Requires",
     "download.recommended": "Recommended for your system",
@@ -320,7 +321,7 @@ export const ui = {
     // Features page
     "features.title": "功能特性",
     "features.subtitle":
-      "邻传 v0.7.0 的全部能力，按它能为你做什么分组呈现。",
+      "邻传最新版本的全部能力，按它能为你做什么分组呈现。",
 
     // Feature groups
     "features.group.discovery.title": "发现与配对",
@@ -391,6 +392,7 @@ export const ui = {
     "download.subtitle":
       "MIT 协议下完全免费开源。挑选你的平台。",
     "download.version": "版本",
+    "download.latest": "最新版本",
     "download.released": "发布日期",
     "download.systemReq": "系统要求",
     "download.recommended": "推荐适合您系统的版本",

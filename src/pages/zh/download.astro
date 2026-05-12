@@ -2,7 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import DownloadCard from "@/components/DownloadCard.astro";
 import { useTranslations } from "@/i18n/utils";
-import { downloads, currentVersion, releaseDate } from "@/data/downloads";
+import { downloads } from "@/data/downloads";
 
 const lang = "zh";
 const t = useTranslations(lang);
@@ -13,7 +13,7 @@ const winNotice = downloads.find((d) => d.notice === "windowsSmartscreen");
 
 <BaseLayout
   title="下载"
-  description="下载邻传 v0.7.0：macOS 与 Windows 已上线，iOS 与 Android 应用商店审核中。MIT 协议免费开源。"
+  description="下载邻传：macOS 与 Windows 已上线，iOS 与 Android 应用商店审核中。MIT 协议免费开源。"
   lang={lang}
 >
   <section class="py-16 sm:py-20">
@@ -26,7 +26,7 @@ const winNotice = downloads.find((d) => d.notice === "windowsSmartscreen");
           {t("download.subtitle")}
         </p>
         <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">
-          {t("download.version")} <strong>{currentVersion}</strong> · {t("download.released")} {releaseDate}
+          <strong>{t("download.latest")}</strong>
         </p>
       </div>
 
