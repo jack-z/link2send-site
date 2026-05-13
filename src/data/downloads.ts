@@ -19,8 +19,8 @@ export interface DownloadItem {
 
 // Used only by JSON-LD structured data (SoftwareApplication) for SEO.
 // Visible UI shows "Latest version" instead, so this can be updated less frequently.
-export const currentVersion = "0.7.1";
-export const releaseDate = "2026-05-12";
+export const currentVersion = "0.7.3";
+export const releaseDate = "2026-05-13";
 
 /**
  * Release host serving signed installers under /releases/latest/.
