@@ -7,14 +7,15 @@ export const ui = {
     "nav.docs": "Docs",
 
     // Hero
-    "hero.kicker": "LAN MESSENGER · TLS 1.3 · mTLS",
-    "hero.title": "Chat in your LAN. Move files and folders in a snap.",
-    "hero.titleAccent": "in your LAN",
+    "hero.kicker": "Open source · MIT · No cloud",
+    "hero.title": "Send files between your devices, like AirDrop — but everywhere.",
+    "hero.titleAccent": "like AirDrop",
     "hero.subtitle":
-      "Link2Send is a local-network messenger for Mac, Windows, iOS and Android. Text, files, entire folders — end-to-end encrypted, never via the cloud.",
+      "Mac, Windows, iPhone, Android — Link2Send moves files and folders between any two devices on your network. No cloud, no compression, no sign-up.",
     "hero.cta.primary": "Download for {platform}",
-    "hero.cta.primaryGeneric": "Download Now",
-    "hero.cta.secondary": "See all features",
+    "hero.cta.primaryGeneric": "Get Link2Send — Free",
+    "hero.cta.secondary": "How it works",
+    "hero.cta.note": "Free · Open source · macOS 11+ · Windows 10+",
 
     // Hero chat preview (mockup labels)
     "preview.search": "Search",
@@ -33,16 +34,22 @@ export const ui = {
     "preview.fileProgress": "76% · 10 MB/s",
     "preview.fileEta": "~17s left",
 
+    // Social proof row
+    "social.kicker": "Trusted by indie devs, designers and small teams",
+    "social.openSource": "Open source · MIT",
+    "social.crossPlatform": "Mac · Windows · iPhone · Android",
+    "social.github": "Star on GitHub",
+
     // Stats bar
-    "stats.kicker": "ENGINEERED FOR YOUR NETWORK",
-    "stats.encryption": "TLS 1.3 · mTLS",
-    "stats.encryption.desc": "Mutual cert auth on every byte",
-    "stats.parallel": "4–8 parallel slots",
-    "stats.parallel.desc": "TLS connection pool per session",
-    "stats.size": "50 GB+ folders",
-    "stats.size.desc": "Resumable, integrity-checked",
-    "stats.cloud": "0 cloud servers",
-    "stats.cloud.desc": "Files never leave your LAN",
+    "stats.kicker": "WHAT THE NUMBERS LOOK LIKE",
+    "stats.size": "50 GB+",
+    "stats.size.desc": "Largest single transfer tested",
+    "stats.parallel": "10 000+",
+    "stats.parallel.desc": "Files in one folder, one drag",
+    "stats.cloud": "0",
+    "stats.cloud.desc": "Cloud servers, accounts or telemetry",
+    "stats.encryption": "100%",
+    "stats.encryption.desc": "Bytes over mutual TLS 1.3",
 
     // Platforms
     "platform.windows": "Windows",
@@ -52,33 +59,110 @@ export const ui = {
     "platform.android": "Android",
     "platform.allPlatforms": "Available on Mac, Windows, iOS and Android",
 
-    // Showcase (3 pillars)
-    "showcase.kicker": "WHAT IT DOES",
-    "showcase.title": "Built for working across your own devices",
+    // Use cases
+    "usecases.kicker": "WHO IT'S FOR",
+    "usecases.title": "Three places where Link2Send replaces something painful",
+    "usecases.subtitle":
+      "Built for the cross-device moments that AirDrop, WeChat and Google Drive never quite solved.",
+
+    "usecases.crossOS.tag": "Cross-platform",
+    "usecases.crossOS.title": "iPhone ↔ Windows. Android ↔ Mac.",
+    "usecases.crossOS.body":
+      "AirDrop ends at Apple's wall. Link2Send doesn't. Send originals, not compressed copies, between any two devices on your Wi-Fi.",
+    "usecases.crossOS.quote": "Send a 4K video from iPhone to a Windows laptop in 12 seconds — no upload.",
+
+    "usecases.devs.tag": "For developers & designers",
+    "usecases.devs.title": "Move a 5 GB project folder, not just a file",
+    "usecases.devs.body":
+      "Drop an entire src/ tree, a 50 GB ISO or a 200-layer PSD. Resumable, integrity-checked, no cloud quota to hit.",
+    "usecases.devs.quote": "Folder of 10 000 files. One drag. Done.",
+
+    "usecases.daily.tag": "For daily life",
+    "usecases.daily.title": "Photos and videos without WeChat compression",
+    "usecases.daily.body":
+      "Send originals to family or yourself between phone and laptop — no chat-app compression, no quality loss, no signing in.",
+    "usecases.daily.quote": "Original quality. No re-encode. No size cap.",
+
+    // Showcase (3 pillars — benefit-led)
+    "showcase.kicker": "WHY LINK2SEND",
+    "showcase.title": "Three things every user notices in the first minute",
     "showcase.subtitle":
-      "A messenger, a transfer tool and an encrypted bridge — running on your local network only.",
+      "We obsess over the things you actually feel — speed, reach and trust.",
 
-    "showcase.chat.title": "LAN messenger",
-    "showcase.chat.desc":
-      "Send text, emoji, links, screenshots and clipboard images in a single timeline. Search, scroll back, favorite — everything stays on your devices.",
-    "showcase.chat.point1": "Chat-style timeline with full history",
-    "showcase.chat.point2": "Image, PDF and Office previews built in",
-    "showcase.chat.point3": "Local SQLite, encrypted with AES-256-GCM",
+    "showcase.fast.title": "Fast — because nothing leaves your network",
+    "showcase.fast.desc":
+      "Files travel directly between devices on your LAN. A 5 GB video moves at full Wi-Fi speed instead of crawling up to the cloud and back down.",
+    "showcase.fast.point1": "Direct device-to-device, no relay",
+    "showcase.fast.point2": "4–8 parallel TLS connections per session",
+    "showcase.fast.point3": "Resumable from the last verified chunk",
 
-    "showcase.transfer.title": "Files & folders, drag-and-drop",
-    "showcase.transfer.desc":
-      "Drop one screenshot or a 50 GB project folder — Link2Send streams it across with progress, integrity checks and resume.",
-    "showcase.transfer.point1": "Single file or 10 000-file folder, same flow",
-    "showcase.transfer.point2": "Resume from the last verified chunk",
-    "showcase.transfer.point3": "Power-loss safe with strict fsync ordering",
+    "showcase.universal.title": "Universal — Mac, Windows, iPhone, Android",
+    "showcase.universal.desc":
+      "AirDrop is Apple-only. Snapdrop only does single files via browser. Link2Send is a real native app on every major OS — and they all talk to each other.",
+    "showcase.universal.point1": "Native macOS, Windows, iOS, Android builds",
+    "showcase.universal.point2": "Files and folders, not just one-shot snippets",
+    "showcase.universal.point3": "Auto-discovery on the same Wi-Fi, no IP setup",
 
-    "showcase.secure.title": "Secure and fast",
-    "showcase.secure.desc":
-      "Mutual TLS 1.3 over a 4–8 slot connection pool. Encrypted by default, parallel by design, no cloud in the middle.",
-    "showcase.secure.point1": "TLS 1.3 + mTLS, encryption cannot be disabled",
-    "showcase.secure.point2": "4–8 parallel TLS slots multiplex large transfers",
-    "showcase.secure.point3": "Reverse-slot fallback for asymmetric NAT",
+    "showcase.private.title": "Private — by design, not by promise",
+    "showcase.private.desc":
+      "There is no Link2Send server you can leak from, because there isn't one. mTLS between devices, AES-256-GCM at rest, MIT-licensed source you can audit.",
+    "showcase.private.point1": "Mutual TLS 1.3 — encryption is mandatory, not optional",
+    "showcase.private.point2": "No accounts, no telemetry, no outbound internet",
+    "showcase.private.point3": "Open source — verify it yourself",
 
+    // Compare table
+    "compare.kicker": "VS THE ALTERNATIVES",
+    "compare.title": "How Link2Send compares with what you're using today",
+    "compare.subtitle": "Honest table. We picked the criteria that actually bite.",
+
+    "compare.col.feature": "What you care about",
+    "compare.col.l2s": "Link2Send",
+    "compare.col.airdrop": "AirDrop",
+    "compare.col.wechat": "WeChat / IM",
+    "compare.col.wetransfer": "WeTransfer",
+    "compare.col.cloud": "Cloud Drive",
+
+    "compare.row.cross.label": "Mac ↔ Windows ↔ iPhone ↔ Android",
+    "compare.row.cross.l2s": "Yes — all four",
+    "compare.row.cross.airdrop": "Apple devices only",
+    "compare.row.cross.wechat": "Yes, but compressed",
+    "compare.row.cross.wetransfer": "Browser only",
+    "compare.row.cross.cloud": "Browser only",
+
+    "compare.row.size.label": "Big files (5 GB+ videos, 50 GB folders)",
+    "compare.row.size.l2s": "Unlimited",
+    "compare.row.size.airdrop": "Yes (Apple only)",
+    "compare.row.size.wechat": "Capped, often re-encoded",
+    "compare.row.size.wetransfer": "2 GB free, 200 GB paid",
+    "compare.row.size.cloud": "Quota-bound, slow upload",
+
+    "compare.row.original.label": "Original quality (no re-encode)",
+    "compare.row.original.l2s": "Always",
+    "compare.row.original.airdrop": "Yes",
+    "compare.row.original.wechat": "No, photos & videos compressed",
+    "compare.row.original.wetransfer": "Yes",
+    "compare.row.original.cloud": "Yes",
+
+    "compare.row.cloud.label": "Goes through a cloud server",
+    "compare.row.cloud.l2s": "No, LAN direct",
+    "compare.row.cloud.airdrop": "No, peer-to-peer",
+    "compare.row.cloud.wechat": "Yes, always",
+    "compare.row.cloud.wetransfer": "Yes, always",
+    "compare.row.cloud.cloud": "Yes, always",
+
+    "compare.row.account.label": "Sign-up required",
+    "compare.row.account.l2s": "No",
+    "compare.row.account.airdrop": "Apple ID",
+    "compare.row.account.wechat": "Yes",
+    "compare.row.account.wetransfer": "For larger sends",
+    "compare.row.account.cloud": "Yes",
+
+    "compare.row.encrypt.label": "End-to-end encrypted",
+    "compare.row.encrypt.l2s": "Always (mTLS 1.3)",
+    "compare.row.encrypt.airdrop": "Yes",
+    "compare.row.encrypt.wechat": "Transport only",
+    "compare.row.encrypt.wetransfer": "Transport only",
+    "compare.row.encrypt.cloud": "Transport only",
 
     // How it works
     "howItWorks.title": "How it works",
@@ -93,11 +177,44 @@ export const ui = {
     "howItWorks.step3.desc":
       "Drag a file or a 50 GB folder. Transfers run over a TLS connection pool with resume and integrity checks built in.",
 
+    // Privacy summary
+    "privacy.kicker": "PRIVACY YOU CAN AUDIT",
+    "privacy.title": "Three guarantees, one source you can read",
+    "privacy.body":
+      "Link2Send has no backend. Devices identify each other via certificates generated locally on first launch. Encryption is mandatory and cannot be turned off. Source is MIT — verify it yourself.",
+    "privacy.badge.noCloud.title": "No cloud",
+    "privacy.badge.noCloud.desc": "Files never leave your LAN",
+    "privacy.badge.noAccount.title": "No account",
+    "privacy.badge.noAccount.desc": "Identity is a local cert",
+    "privacy.badge.noTelemetry.title": "No telemetry",
+    "privacy.badge.noTelemetry.desc": "Zero outbound calls",
+
+    // Home FAQ
+    "homeFaq.kicker": "QUICK ANSWERS",
+    "homeFaq.title": "Things people ask before downloading",
+
+    "homeFaq.q1": "Do both devices need to be on the same Wi-Fi?",
+    "homeFaq.a1": "Same LAN — usually that means the same Wi-Fi or wired network. Devices on different VLANs or guest networks won't see each other.",
+
+    "homeFaq.q2": "Does it work without internet?",
+    "homeFaq.a2": "Yes. Link2Send only needs a local network — no internet required for discovery or transfer. The only thing that ever needs internet is the initial download of the app itself.",
+
+    "homeFaq.q3": "Is my data encrypted?",
+    "homeFaq.a3": "Every byte is sent over mutual TLS 1.3 between devices that have explicitly paired. Encryption is mandatory — there is no fallback path. Local message history is encrypted at rest with AES-256-GCM.",
+
+    "homeFaq.q4": "How is this different from AirDrop or LocalSend?",
+    "homeFaq.a4": "AirDrop only works between Apple devices. LocalSend is closer in spirit but is single-shot and lacks chat history, native folder transfer at scale, and an iOS native app. Link2Send keeps the speed and the no-cloud guarantee, but adds cross-platform reach and a real chat-style timeline.",
+
+    "homeFaq.q5": "Is it really free? What's the catch?",
+    "homeFaq.a5": "Free, MIT licensed, no telemetry, no premium tier. The catch is that there isn't one — Link2Send is a tool, not a service. We don't have your data because we don't have a backend.",
+
     // CTA
-    "cta.title": "Stop uploading. Start sending.",
+    "cta.title": "Stop uploading to send. Just send.",
     "cta.subtitle":
-      "Download Link2Send and move your files between devices in seconds — without the cloud middleman.",
-    "cta.button": "Get Link2Send",
+      "Free, open source, and ready in under a minute. The next big file you move is already faster.",
+    "cta.button": "Download for {platform}",
+    "cta.buttonGeneric": "Download Link2Send — Free",
+    "cta.note": "macOS · Windows · iOS · Android",
 
     // Features page
     "features.title": "Features",
@@ -138,7 +255,7 @@ export const ui = {
       "Each device is identified by the SHA-256 of its self-signed certificate — pinned at pairing time and checked on every connect.",
     "features.pathGuard.title": "Path-traversal guard",
     "features.pathGuard.desc":
-      "The receiver rejects absolute paths, ‘..’ segments, NUL bytes and Windows reserved names — files cannot escape the receive folder.",
+      "The receiver rejects absolute paths, '..' segments, NUL bytes and Windows reserved names — files cannot escape the receive folder.",
     "features.encryptedStore.title": "Encrypted message store",
     "features.encryptedStore.desc":
       "Chat history is stored in a local SQLite database encrypted with AES-256-GCM. The on-disk database is unreadable without your device.",
@@ -192,7 +309,7 @@ export const ui = {
       "The build is not yet Apple-notarized. After the first launch, right-click the app in Finder and choose Open, then confirm. macOS will remember the choice afterwards.",
     "download.notice.windows.title": "First launch on Windows",
     "download.notice.windows.body":
-      "Windows SmartScreen may warn the first time. Click ‘More info’ → ‘Run anyway’. The installer is signed with our publisher certificate.",
+      "Windows SmartScreen may warn the first time. Click 'More info' → 'Run anyway'. The installer is signed with our publisher certificate.",
     // Footer
     "footer.description":
       "Cross-platform, encrypted, peer-to-peer file transfer over your local network. No cloud. No accounts.",
@@ -226,14 +343,15 @@ export const ui = {
     "nav.docs": "文档",
 
     // Hero
-    "hero.kicker": "局域网即时通讯 · TLS 1.3 · mTLS",
-    "hero.title": "局域网聊天，文件夹一拖即送",
-    "hero.titleAccent": "局域网",
+    "hero.kicker": "开源 · MIT · 不走云端",
+    "hero.title": "在自己的设备之间传文件——像 AirDrop 一样，但跨平台",
+    "hero.titleAccent": "像 AirDrop 一样",
     "hero.subtitle":
-      "邻传是一款覆盖 Mac、Windows、iOS、Android 的局域网通讯工具：发消息、传文件、传整个文件夹，全程端到端加密，不经云端。",
+      "Mac、Windows、iPhone、Android 互传——文件和文件夹直接走局域网。不上云、不压缩、不注册。",
     "hero.cta.primary": "下载 {platform} 版",
-    "hero.cta.primaryGeneric": "立即下载",
-    "hero.cta.secondary": "查看完整功能",
+    "hero.cta.primaryGeneric": "免费下载邻传",
+    "hero.cta.secondary": "看它怎么工作",
+    "hero.cta.note": "免费 · 开源 · macOS 11+ · Windows 10+",
 
     // Hero chat preview (mockup labels)
     "preview.search": "搜索",
@@ -252,16 +370,22 @@ export const ui = {
     "preview.fileProgress": "76% · 10 MB/s",
     "preview.fileEta": "剩余 ~17s",
 
+    // Social proof row
+    "social.kicker": "面向独立开发者、设计师与小团队",
+    "social.openSource": "开源 · MIT 协议",
+    "social.crossPlatform": "Mac · Windows · iPhone · Android",
+    "social.github": "在 GitHub 上 Star",
+
     // Stats bar
-    "stats.kicker": "为你的网络而生",
-    "stats.encryption": "TLS 1.3 · mTLS",
-    "stats.encryption.desc": "每一字节双向证书认证",
-    "stats.parallel": "4–8 并发连接",
-    "stats.parallel.desc": "会话级 TLS 长连接池",
-    "stats.size": "50 GB+ 文件夹",
-    "stats.size.desc": "可断点续传，逐块校验",
-    "stats.cloud": "0 云端服务器",
-    "stats.cloud.desc": "文件不离开你的局域网",
+    "stats.kicker": "用数字说话",
+    "stats.size": "50 GB+",
+    "stats.size.desc": "已实测的单次传输上限",
+    "stats.parallel": "10 000+",
+    "stats.parallel.desc": "一个文件夹的文件数，一次拖入",
+    "stats.cloud": "0",
+    "stats.cloud.desc": "云服务器 / 账号 / 遥测",
+    "stats.encryption": "100%",
+    "stats.encryption.desc": "全量字节走双向 TLS 1.3",
 
     // Platforms
     "platform.windows": "Windows",
@@ -271,33 +395,110 @@ export const ui = {
     "platform.android": "Android",
     "platform.allPlatforms": "已覆盖 Mac、Windows、iOS、Android",
 
-    // Showcase (3 pillars)
-    "showcase.kicker": "邻传可以做什么",
-    "showcase.title": "为「在自己的设备之间工作」而生",
+    // Use cases
+    "usecases.kicker": "适合谁用",
+    "usecases.title": "三个邻传能替你解决的「老毛病」",
+    "usecases.subtitle":
+      "为 AirDrop、微信、网盘都没能搞定的跨设备瞬间而设计。",
+
+    "usecases.crossOS.tag": "跨平台",
+    "usecases.crossOS.title": "iPhone ↔ Windows · Android ↔ Mac",
+    "usecases.crossOS.body":
+      "AirDrop 跨不过苹果生态，邻传可以。同 Wi-Fi 下任意两台设备之间传原图、原视频，不压缩不转码。",
+    "usecases.crossOS.quote": "iPhone 一段 4K 视频发到 Windows 笔记本，12 秒搞定，不走云端。",
+
+    "usecases.devs.tag": "开发 / 设计",
+    "usecases.devs.title": "项目文件夹一拖即送，不再切网盘",
+    "usecases.devs.body":
+      "整个 src/ 目录、50 GB ISO、200 层 PSD —— 一次拖入。断点续传、逐块校验，不撞网盘容量上限。",
+    "usecases.devs.quote": "万级文件 · 一次拖入 · 自动并发。",
+
+    "usecases.daily.tag": "日常生活",
+    "usecases.daily.title": "照片视频原图直传，不再被微信压糊",
+    "usecases.daily.body":
+      "手机和电脑之间互传原图、原视频，给家人也行——没有 IM 压缩，没有清晰度损失，不用登录。",
+    "usecases.daily.quote": "原画质 · 不转码 · 不限大小。",
+
+    // Showcase (3 pillars — benefit-led)
+    "showcase.kicker": "为什么选邻传",
+    "showcase.title": "用户第一分钟就会注意到的三件事",
     "showcase.subtitle":
-      "聊天工具、传输工具、加密通道三合一——只在你的局域网里运行。",
+      "我们只死磕你能切身感受到的：快、广、放心。",
 
-    "showcase.chat.title": "局域网即时通讯",
-    "showcase.chat.desc":
-      "在熟悉的聊天界面里发文字、表情、图片、链接、截图，搜索、回看、收藏，记录全部留在你的设备上。",
-    "showcase.chat.point1": "聊天式时间线，可搜索可回看",
-    "showcase.chat.point2": "图片、PDF、Office 文档内置预览",
-    "showcase.chat.point3": "本地 SQLite + AES-256-GCM 加密存储",
+    "showcase.fast.title": "够快——因为东西不出你的网络",
+    "showcase.fast.desc":
+      "文件在局域网内点对点直传。5 GB 视频按 Wi-Fi 满速跑，不必上传到云再下回来。",
+    "showcase.fast.point1": "设备直连，不走任何中继",
+    "showcase.fast.point2": "会话级 4–8 条 TLS 长连接并发",
+    "showcase.fast.point3": "中断从最后一个已校验的块继续",
 
-    "showcase.transfer.title": "文件 / 文件夹一拖即送",
-    "showcase.transfer.desc":
-      "拖一张截图或 50 GB 项目文件夹，邻传都按统一流程传输：实时进度、逐块校验、可断点续传。",
-    "showcase.transfer.point1": "单文件与万级文件夹同一套流程",
-    "showcase.transfer.point2": "中断后从最后一个已确认的块继续",
-    "showcase.transfer.point3": "fsync 顺序屏障，掉电也不损坏",
+    "showcase.universal.title": "够广——Mac、Windows、iPhone、Android 全覆盖",
+    "showcase.universal.desc":
+      "AirDrop 只在苹果系统内有效；Snapdrop 只能浏览器里发一个文件。邻传是每个平台上的真原生 App，且互通。",
+    "showcase.universal.point1": "macOS、Windows、iOS、Android 原生客户端",
+    "showcase.universal.point2": "文件 / 文件夹通吃，不是一次性 snippet",
+    "showcase.universal.point3": "同 Wi-Fi 自动发现，无需配置 IP",
 
-    "showcase.secure.title": "安全 · 高效",
-    "showcase.secure.desc":
-      "双向 TLS 1.3 + 4–8 条长连接池：默认强加密，并发可拉满，全程不经云端。",
-    "showcase.secure.point1": "TLS 1.3 + mTLS，加密强制开启不可关闭",
-    "showcase.secure.point2": "4–8 条 TLS slot 并发，大文件分片到多 slot",
-    "showcase.secure.point3": "对称 NAT 时反向拨号兜底，不卡握手",
+    "showcase.private.title": "够放心——隐私靠设计，不是靠口号",
+    "showcase.private.desc":
+      "邻传没有\"我们的服务器可能泄漏\"这一说，因为根本就没有云端。设备间双向 TLS、本地 AES-256-GCM 加密、源代码 MIT 协议公开可审。",
+    "showcase.private.point1": "双向 TLS 1.3，加密强制开启不可关闭",
+    "showcase.private.point2": "无账号、无遥测、不发起任何外网连接",
+    "showcase.private.point3": "源码开源，自己可审",
 
+    // Compare table
+    "compare.kicker": "vs 替代方案",
+    "compare.title": "邻传跟你现在在用的工具，到底差在哪",
+    "compare.subtitle": "诚实对比表，我们挑的都是真正会咬人的指标。",
+
+    "compare.col.feature": "你关心的事",
+    "compare.col.l2s": "邻传",
+    "compare.col.airdrop": "AirDrop",
+    "compare.col.wechat": "微信 / IM",
+    "compare.col.wetransfer": "WeTransfer",
+    "compare.col.cloud": "云盘",
+
+    "compare.row.cross.label": "Mac ↔ Windows ↔ iPhone ↔ Android",
+    "compare.row.cross.l2s": "全支持",
+    "compare.row.cross.airdrop": "仅苹果生态",
+    "compare.row.cross.wechat": "支持，但要压缩",
+    "compare.row.cross.wetransfer": "仅浏览器",
+    "compare.row.cross.cloud": "仅浏览器",
+
+    "compare.row.size.label": "大文件（5 GB 视频 / 50 GB 文件夹）",
+    "compare.row.size.l2s": "不限",
+    "compare.row.size.airdrop": "支持（仅苹果）",
+    "compare.row.size.wechat": "有上限，常被压缩 / 重编码",
+    "compare.row.size.wetransfer": "免费 2 GB，付费 200 GB",
+    "compare.row.size.cloud": "受配额限制，上传慢",
+
+    "compare.row.original.label": "原画质（不转码）",
+    "compare.row.original.l2s": "始终原画质",
+    "compare.row.original.airdrop": "原画质",
+    "compare.row.original.wechat": "图片/视频会被压缩",
+    "compare.row.original.wetransfer": "原画质",
+    "compare.row.original.cloud": "原画质",
+
+    "compare.row.cloud.label": "是否经过云端服务器",
+    "compare.row.cloud.l2s": "否，局域网直连",
+    "compare.row.cloud.airdrop": "否，点对点",
+    "compare.row.cloud.wechat": "是，每次都走",
+    "compare.row.cloud.wetransfer": "是，每次都走",
+    "compare.row.cloud.cloud": "是，每次都走",
+
+    "compare.row.account.label": "是否要注册账号",
+    "compare.row.account.l2s": "不需要",
+    "compare.row.account.airdrop": "需要 Apple ID",
+    "compare.row.account.wechat": "需要",
+    "compare.row.account.wetransfer": "大文件需要",
+    "compare.row.account.cloud": "需要",
+
+    "compare.row.encrypt.label": "端到端加密",
+    "compare.row.encrypt.l2s": "始终（mTLS 1.3）",
+    "compare.row.encrypt.airdrop": "支持",
+    "compare.row.encrypt.wechat": "仅传输层",
+    "compare.row.encrypt.wetransfer": "仅传输层",
+    "compare.row.encrypt.cloud": "仅传输层",
 
     // How it works
     "howItWorks.title": "工作原理",
@@ -312,11 +513,44 @@ export const ui = {
     "howItWorks.step3.desc":
       "拖一个文件或 50 GB 文件夹都行。底层 TLS 连接池负责并发、断点续传与完整性校验。",
 
+    // Privacy summary
+    "privacy.kicker": "隐私可被审计",
+    "privacy.title": "三条保证，一份可读源码",
+    "privacy.body":
+      "邻传没有后端。设备之间通过首次启动时本地生成的证书互相识别，加密强制开启不可关闭。源代码 MIT 开源，你可以自己审。",
+    "privacy.badge.noCloud.title": "无云端",
+    "privacy.badge.noCloud.desc": "文件不离开你的局域网",
+    "privacy.badge.noAccount.title": "无账号",
+    "privacy.badge.noAccount.desc": "身份就是本地证书",
+    "privacy.badge.noTelemetry.title": "无遥测",
+    "privacy.badge.noTelemetry.desc": "零外网请求",
+
+    // Home FAQ
+    "homeFaq.kicker": "快速回答",
+    "homeFaq.title": "下载前你最可能问的几个问题",
+
+    "homeFaq.q1": "两台设备必须在同一 Wi-Fi 吗？",
+    "homeFaq.a1": "需要在同一局域网内，通常就是同一个 Wi-Fi 或同一台路由器下的有线网络。不同 VLAN、Guest 网络下的设备彼此看不到。",
+
+    "homeFaq.q2": "没网也能用吗？",
+    "homeFaq.a2": "可以。邻传只需要局域网，发现和传输都不需要外网。唯一需要联网的环节是从这个网站把 App 下下来。",
+
+    "homeFaq.q3": "数据是加密的吗？",
+    "homeFaq.a3": "每一字节都走配对设备之间的双向 TLS 1.3，加密强制开启没有降级路径。本地聊天记录使用 AES-256-GCM 加密保存。",
+
+    "homeFaq.q4": "跟 AirDrop、LocalSend 比有什么不同？",
+    "homeFaq.a4": "AirDrop 只在苹果设备间工作。LocalSend 思路接近，但偏单次传输，缺聊天历史、缺原生大文件夹、缺 iOS 原生 App。邻传保留了\"快\"和\"不走云端\"，再叠加跨平台覆盖和真正的聊天式时间线。",
+
+    "homeFaq.q5": "真的免费吗？有什么套路？",
+    "homeFaq.a5": "免费、MIT 协议、无遥测、无付费档。\"套路\"就是没有套路——邻传是个工具，不是个服务。我们没有你的数据，因为我们根本没有后端。",
+
     // CTA
-    "cta.title": "别再上传了，直接发吧",
+    "cta.title": "别再为了\"传\"先上传到云了。直接发。",
     "cta.subtitle":
-      "下载邻传，几秒内即可在设备之间互传文件，跳过云端中转。",
-    "cta.button": "获取邻传",
+      "免费、开源，一分钟内就可以用上。下一个大文件，本可以更快。",
+    "cta.button": "下载 {platform} 版",
+    "cta.buttonGeneric": "免费下载邻传",
+    "cta.note": "macOS · Windows · iOS · Android",
 
     // Features page
     "features.title": "功能特性",
