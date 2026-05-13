@@ -1,8 +1,9 @@
 # NOTE: Cloudflare Pages _redirects only supports relative URLs.
 # www -> apex is configured at the CF dashboard via Rules -> Redirect Rules.
 
-# Default to English at the root
-/ /en/ 302
+# Root is handled by src/pages/index.astro, which detects browser language
+# client-side and redirects to /zh/ or /en/. We deliberately do NOT add a
+# `/ /en/ 302` edge redirect here — that would bypass the language detection.
 
 # Convenience top-level shortcuts
 /download /en/download/ 302
