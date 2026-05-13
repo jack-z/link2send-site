@@ -16,6 +16,7 @@ type Case = {
   quoteKey: string;
   icon: "phone" | "code" | "heart";
   accent: "primary" | "accent" | "emerald";
+  screenshotKey?: "crossOS" | "devs";
 };
 
 const cases: Case[] = [
@@ -26,6 +27,7 @@ const cases: Case[] = [
     quoteKey: "usecases.crossOS.quote",
     icon: "phone",
     accent: "primary",
+    screenshotKey: "crossOS",
   },
   {
     tagKey: "usecases.devs.tag",
@@ -34,6 +36,7 @@ const cases: Case[] = [
     quoteKey: "usecases.devs.quote",
     icon: "code",
     accent: "accent",
+    screenshotKey: "devs",
   },
   {
     tagKey: "usecases.daily.tag",
@@ -50,6 +53,22 @@ const accentClasses = {
   accent: "bg-accent-50 text-accent-700 dark:bg-accent-950/60 dark:text-accent-300",
   emerald: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300",
 } as const;
+
+const screenshots: Record<NonNullable<Case["screenshotKey"]>, { en: string; zh: string }> = {
+  crossOS: {
+    en: "/screenshots/ios/en-01-devices-home.png",
+    zh: "/screenshots/ios/zh-01-receive-request.png",
+  },
+  devs: {
+    en: "/screenshots/ios/en-05-transfer-progress.png",
+    zh: "/screenshots/ios/zh-02-transfer-progress.png",
+  },
+};
+
+function screenshotFor(key: Case["screenshotKey"]): string | null {
+  if (!key) return null;
+  return screenshots[key][lang] ?? screenshots[key].en;
+}
 ---
 
 <section class="bg-white py-20 sm:py-24 dark:bg-slate-950">
@@ -67,39 +86,57 @@ const accentClasses = {
     </div>
 
     <div class="mt-14 grid gap-6 lg:grid-cols-3">
-      {cases.map((c) => (
-        <div class="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 dark:border-slate-800 dark:bg-slate-900">
-          <span class:list={["inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em]", accentClasses[c.accent]]}>
-            <span class="inline-flex h-3.5 w-3.5">
-              {c.icon === "phone" && (
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-                </svg>
-              )}
-              {c.icon === "code" && (
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
-                </svg>
-              )}
-              {c.icon === "heart" && (
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                </svg>
-              )}
-            </span>
-            {t(c.tagKey as any)}
-          </span>
-          <h3 class="mt-5 text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
-            {t(c.titleKey as any)}
-          </h3>
-          <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-            {t(c.bodyKey as any)}
-          </p>
-          <p class="mt-5 border-l-2 border-slate-200 pl-3 text-sm italic text-slate-500 dark:border-slate-700 dark:text-slate-400">
-            "{t(c.quoteKey as any)}"
-          </p>
-        </div>
-      ))}
+      {cases.map((c) => {
+        const screenshot = screenshotFor(c.screenshotKey);
+        return (
+          <div class="flex flex-col rounded-2xl border border-slate-200 bg-white overflow-hidden dark:border-slate-800 dark:bg-slate-900">
+            <div class="flex flex-1 flex-col p-7">
+              <span class:list={["inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em]", accentClasses[c.accent]]}>
+                <span class="inline-flex h-3.5 w-3.5">
+                  {c.icon === "phone" && (
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                    </svg>
+                  )}
+                  {c.icon === "code" && (
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                    </svg>
+                  )}
+                  {c.icon === "heart" && (
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                    </svg>
+                  )}
+                </span>
+                {t(c.tagKey as any)}
+              </span>
+              <h3 class="mt-5 text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
+                {t(c.titleKey as any)}
+              </h3>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                {t(c.bodyKey as any)}
+              </p>
+              <p class="mt-5 border-l-2 border-slate-200 pl-3 text-sm italic text-slate-500 dark:border-slate-700 dark:text-slate-400">
+                "{t(c.quoteKey as any)}"
+              </p>
+            </div>
+            {screenshot && (
+              <div class="border-t border-slate-100 bg-gradient-to-b from-slate-50 to-white px-7 pt-6 dark:border-slate-800 dark:from-slate-900/60 dark:to-slate-900">
+                <img
+                  src={screenshot}
+                  alt={t(c.titleKey as any)}
+                  loading="lazy"
+                  decoding="async"
+                  class="mx-auto h-72 w-auto object-contain object-top"
+                  width="642"
+                  height="1389"
+                />
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   </div>
 </section>
