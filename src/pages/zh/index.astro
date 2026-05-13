@@ -1,8 +1,13 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/Hero.astro";
-import StatsBar from "@/components/StatsBar.astro";
+import SocialProofRow from "@/components/SocialProofRow.astro";
+import UseCases from "@/components/UseCases.astro";
 import Showcase from "@/components/Showcase.astro";
+import CompareTable from "@/components/CompareTable.astro";
+import StatsBar from "@/components/StatsBar.astro";
+import PrivacySummary from "@/components/PrivacySummary.astro";
+import HomeFAQ from "@/components/HomeFAQ.astro";
 import CTASection from "@/components/CTASection.astro";
 import { useTranslations } from "@/i18n/utils";
 import { currentVersion, releaseDate } from "@/data/downloads";
@@ -15,27 +20,36 @@ const steps = [
   { num: "02", titleKey: "howItWorks.step2.title", descKey: "howItWorks.step2.desc" },
   { num: "03", titleKey: "howItWorks.step3.title", descKey: "howItWorks.step3.desc" },
 ];
+
+const faqItems = [1, 2, 3, 4, 5].map((n) => ({
+  "@type": "Question",
+  name: t(`homeFaq.q${n}` as any),
+  acceptedAnswer: {
+    "@type": "Answer",
+    text: t(`homeFaq.a${n}` as any),
+  },
+}));
 ---
 
 <BaseLayout
-  title="局域网加密通讯 · Mac、Windows、iOS、Android"
-  description="邻传是一款覆盖 Mac、Windows、iOS、Android 的局域网通讯工具：聊天、传文件、传整个文件夹，全程端到端加密，不经云端。"
+  title="Mac、Windows、iPhone、Android 之间互传文件——像 AirDrop 一样，但跨平台"
+  description="邻传在 Mac、Windows、iPhone、Android 任意两台设备之间传文件和文件夹，全部走局域网。不上云、不压缩、不注册。免费开源。"
   lang={lang}
 >
   <Hero lang={lang} />
-
-  <StatsBar lang={lang} />
-
+  <SocialProofRow lang={lang} />
+  <UseCases lang={lang} />
   <Showcase lang={lang} />
+  <CompareTable lang={lang} />
+  <StatsBar lang={lang} />
 
   <!-- How it works -->
   <section class="relative overflow-hidden bg-white py-20 sm:py-24 dark:bg-slate-950">
     <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900/40 dark:to-slate-950"></div>
-
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="mx-auto max-w-2xl text-center">
         <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-400">
-          三步走
+          三步上手
         </span>
         <h2 class="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem] dark:text-white">
           {t("howItWorks.title")}
@@ -48,7 +62,7 @@ const steps = [
         {steps.map((step) => (
           <div class="relative rounded-2xl border border-slate-200 bg-white p-7 dark:border-slate-800 dark:bg-slate-900">
             <span class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
-              STEP {step.num}
+              第 {step.num} 步
             </span>
             <h3 class="mt-3 text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
               {t(step.titleKey as any)}
@@ -62,6 +76,8 @@ const steps = [
     </div>
   </section>
 
+  <PrivacySummary lang={lang} />
+  <HomeFAQ lang={lang} />
   <CTASection lang={lang} />
 
   <script
@@ -77,7 +93,7 @@ const steps = [
       datePublished: releaseDate,
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       description:
-        "局域网即时通讯与加密文件/文件夹传输。无云端、无账号、无需联网。",
+        "跨平台、加密、点对点的局域网文件传输。无云端、无账号。",
       url: "https://link2send.com",
       downloadUrl: "https://link2send.com/zh/download/",
     })}
@@ -86,23 +102,20 @@ const steps = [
     type="application/ld+json"
     set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Organization",
-      name: "邻传 Link2Send",
-      alternateName: "Link2Send",
-      url: "https://link2send.com",
-      email: "support@link2send.com",
-      logo: "https://link2send.com/icon.png",
+      "@type": "FAQPage",
+      mainEntity: faqItems,
     })}
   />
   <script
     type="application/ld+json"
     set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: "邻传 Link2Send",
-      alternateName: "Link2Send",
+      "@type": "Organization",
+      name: "Link2Send",
+      alternateName: "邻传",
       url: "https://link2send.com",
-      inLanguage: ["zh-CN", "en"],
+      email: "support@link2send.com",
+      logo: "https://link2send.com/icon.png",
     })}
   />
 </BaseLayout>

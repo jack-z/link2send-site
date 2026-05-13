@@ -1,8 +1,13 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/Hero.astro";
-import StatsBar from "@/components/StatsBar.astro";
+import SocialProofRow from "@/components/SocialProofRow.astro";
+import UseCases from "@/components/UseCases.astro";
 import Showcase from "@/components/Showcase.astro";
+import CompareTable from "@/components/CompareTable.astro";
+import StatsBar from "@/components/StatsBar.astro";
+import PrivacySummary from "@/components/PrivacySummary.astro";
+import HomeFAQ from "@/components/HomeFAQ.astro";
 import CTASection from "@/components/CTASection.astro";
 import { useTranslations } from "@/i18n/utils";
 import { currentVersion, releaseDate } from "@/data/downloads";
@@ -15,23 +20,32 @@ const steps = [
   { num: "02", titleKey: "howItWorks.step2.title", descKey: "howItWorks.step2.desc" },
   { num: "03", titleKey: "howItWorks.step3.title", descKey: "howItWorks.step3.desc" },
 ];
+
+const faqItems = [1, 2, 3, 4, 5].map((n) => ({
+  "@type": "Question",
+  name: t(`homeFaq.q${n}` as any),
+  acceptedAnswer: {
+    "@type": "Answer",
+    text: t(`homeFaq.a${n}` as any),
+  },
+}));
 ---
 
 <BaseLayout
-  title="Encrypted local-network messenger for Mac, Windows, iOS, Android"
-  description="Link2Send is a local-network messenger for Mac, Windows, iOS and Android. Chat, send files and entire folders — end-to-end encrypted, never via the cloud."
+  title="Send files between Mac, Windows, iPhone, Android — like AirDrop, but everywhere"
+  description="Link2Send moves files and folders between any two devices on your local network — Mac, Windows, iPhone, Android. No cloud, no compression, no sign-up. Free and open source."
   lang={lang}
 >
   <Hero lang={lang} />
-
-  <StatsBar lang={lang} />
-
+  <SocialProofRow lang={lang} />
+  <UseCases lang={lang} />
   <Showcase lang={lang} />
+  <CompareTable lang={lang} />
+  <StatsBar lang={lang} />
 
   <!-- How it works -->
   <section class="relative overflow-hidden bg-white py-20 sm:py-24 dark:bg-slate-950">
     <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900/40 dark:to-slate-950"></div>
-
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="mx-auto max-w-2xl text-center">
         <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-400">
@@ -62,6 +76,8 @@ const steps = [
     </div>
   </section>
 
+  <PrivacySummary lang={lang} />
+  <HomeFAQ lang={lang} />
   <CTASection lang={lang} />
 
   <script
@@ -77,9 +93,17 @@ const steps = [
       datePublished: releaseDate,
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       description:
-        "Local-network messenger and encrypted peer-to-peer file/folder transfer. No cloud, no accounts, no internet.",
+        "Cross-platform peer-to-peer file transfer over your local network. No cloud, no accounts.",
       url: "https://link2send.com",
       downloadUrl: "https://link2send.com/en/download/",
+    })}
+  />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqItems,
     })}
   />
   <script
@@ -92,17 +116,6 @@ const steps = [
       url: "https://link2send.com",
       email: "support@link2send.com",
       logo: "https://link2send.com/icon.png",
-    })}
-  />
-  <script
-    type="application/ld+json"
-    set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: "Link2Send",
-      alternateName: "邻传",
-      url: "https://link2send.com",
-      inLanguage: ["en", "zh-CN"],
     })}
   />
 </BaseLayout>
