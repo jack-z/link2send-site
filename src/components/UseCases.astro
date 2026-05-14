@@ -1,6 +1,16 @@
 ---
 import type { Lang } from "@/i18n/languages";
 import { useTranslations } from "@/i18n/utils";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+// Explicit imports so only the images we actually render get bundled.
+import crossOSEn from "../assets/screenshots/ios/en-01-devices-home.png";
+import crossOSZh from "../assets/screenshots/ios/zh-01-receive-request.png";
+import devsEn from "../assets/screenshots/ios/en-05-transfer-progress.png";
+import devsZh from "../assets/screenshots/ios/zh-02-transfer-progress.png";
+import dailyEn from "../assets/screenshots/ios/en-04-receive-request.png";
+import dailyZh from "../assets/screenshots/ios/zh-03-file-saved.png";
 
 interface Props {
   lang: Lang;
@@ -55,22 +65,13 @@ const accentClasses = {
   emerald: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300",
 } as const;
 
-const screenshots: Record<NonNullable<Case["screenshotKey"]>, { en: string; zh: string }> = {
-  crossOS: {
-    en: "/screenshots/ios/en-01-devices-home.png",
-    zh: "/screenshots/ios/zh-01-receive-request.png",
-  },
-  devs: {
-    en: "/screenshots/ios/en-05-transfer-progress.png",
-    zh: "/screenshots/ios/zh-02-transfer-progress.png",
-  },
-  daily: {
-    en: "/screenshots/ios/en-04-receive-request.png",
-    zh: "/screenshots/ios/zh-03-file-saved.png",
-  },
+const screenshots: Record<NonNullable<Case["screenshotKey"]>, { en: ImageMetadata; zh: ImageMetadata }> = {
+  crossOS: { en: crossOSEn, zh: crossOSZh },
+  devs: { en: devsEn, zh: devsZh },
+  daily: { en: dailyEn, zh: dailyZh },
 };
 
-function screenshotFor(key: Case["screenshotKey"]): string | null {
+function screenshotFor(key: Case["screenshotKey"]): ImageMetadata | null {
   if (!key) return null;
   return screenshots[key][lang] ?? screenshots[key].en;
 }
@@ -128,14 +129,16 @@ function screenshotFor(key: Case["screenshotKey"]): string | null {
             </div>
             {screenshot && (
               <div class="border-t border-slate-100 bg-gradient-to-b from-slate-50 to-white px-7 pt-6 dark:border-slate-800 dark:from-slate-900/60 dark:to-slate-900">
-                <img
+                <Image
                   src={screenshot}
                   alt={t(c.titleKey as any)}
                   loading="lazy"
                   decoding="async"
+                  width={400}
+                  height={866}
+                  format="webp"
+                  quality={80}
                   class="mx-auto h-72 w-auto object-contain object-top"
-                  width="642"
-                  height="1389"
                 />
               </div>
             )}
