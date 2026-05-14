@@ -11,10 +11,28 @@ interface Props {
   lang: Lang;
   canonicalPath?: string;
   image?: string;
+  imageAlt?: string;
   type?: string;
+  keywords?: string[];
+  socialTitle?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  noindex?: boolean;
 }
 
-const { title, description, lang, image, type } = Astro.props;
+const {
+  title,
+  description,
+  lang,
+  image,
+  imageAlt,
+  type,
+  keywords,
+  socialTitle,
+  publishedTime,
+  modifiedTime,
+  noindex,
+} = Astro.props;
 const canonicalPath = Astro.props.canonicalPath || Astro.url.pathname;
 ---
 
@@ -27,7 +45,13 @@ const canonicalPath = Astro.props.canonicalPath || Astro.url.pathname;
       lang={lang}
       canonicalPath={canonicalPath}
       image={image}
+      imageAlt={imageAlt}
       type={type}
+      keywords={keywords}
+      socialTitle={socialTitle}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      noindex={noindex}
     />
   </head>
   <body class="flex min-h-screen flex-col">
