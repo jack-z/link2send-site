@@ -72,6 +72,7 @@ const accentText = idx >= 0 ? accent : "";
             href={`/${lang}/download/`}
             data-fallback-label={t("hero.cta.primaryGeneric")}
             data-template={t("hero.cta.primary")}
+            data-ios-href="https://apps.apple.com/us/app/link2send/id6763858424"
             class="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-600 px-7 py-3.5 text-base font-semibold text-white shadow-[0_10px_40px_-10px_rgba(56,116,250,0.5)] ring-1 ring-primary-700/10 transition hover:shadow-[0_10px_60px_-10px_rgba(56,116,250,0.7)] hover:brightness-110"
           >
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -111,8 +112,20 @@ const accentText = idx >= 0 ? accent : "";
     if (!label) return;
     const ua = navigator.userAgent;
     let platform = "";
-    if (ua.includes("Mac") && !/iPhone|iPad/.test(ua)) platform = "macOS";
-    else if (ua.includes("Win")) platform = "Windows";
+    if (/iPhone|iPad|iPod/.test(ua)) {
+      platform = "iOS";
+      const iosHref = a.getAttribute("data-ios-href");
+      if (iosHref) {
+        a.setAttribute("href", iosHref);
+        a.setAttribute("rel", "noopener");
+      }
+    } else if (/Android/.test(ua)) {
+      platform = "Android";
+    } else if (ua.includes("Mac")) {
+      platform = "macOS";
+    } else if (ua.includes("Win")) {
+      platform = "Windows";
+    }
     if (platform) {
       const tpl = a.getAttribute("data-template") || "";
       label.textContent = tpl.replace("{platform}", platform);
