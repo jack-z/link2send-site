@@ -16,7 +16,7 @@ type Case = {
   quoteKey: string;
   icon: "phone" | "code" | "heart";
   accent: "primary" | "accent" | "emerald";
-  screenshotKey?: "crossOS" | "devs";
+  screenshotKey?: "crossOS" | "devs" | "daily";
 };
 
 const cases: Case[] = [
@@ -45,6 +45,7 @@ const cases: Case[] = [
     quoteKey: "usecases.daily.quote",
     icon: "heart",
     accent: "emerald",
+    screenshotKey: "daily",
   },
 ];
 
@@ -62,6 +63,10 @@ const screenshots: Record<NonNullable<Case["screenshotKey"]>, { en: string; zh: 
   devs: {
     en: "/screenshots/ios/en-05-transfer-progress.png",
     zh: "/screenshots/ios/zh-02-transfer-progress.png",
+  },
+  daily: {
+    en: "/screenshots/ios/en-04-receive-request.png",
+    zh: "/screenshots/ios/zh-03-file-saved.png",
   },
 };
 
