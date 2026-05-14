@@ -172,7 +172,7 @@ export const ui = {
       "Grab the right build for each device. First launch generates a unique device certificate locally.",
     "howItWorks.step2.title": "Pair on the same network",
     "howItWorks.step2.desc":
-      "Devices on the same Wi-Fi or LAN auto-discover via UDP. Confirm the pairing once with a QR code or short code.",
+      "Devices on the same Wi-Fi or LAN auto-discover via UDP. Confirm the pairing once by scanning a QR code.",
     "howItWorks.step3.title": "Drop files, hit send",
     "howItWorks.step3.desc":
       "Drag a file or a 50 GB folder. Transfers run over a TLS connection pool with resume and integrity checks built in.",
@@ -239,9 +239,9 @@ export const ui = {
     "features.autoDiscovery.title": "Automatic LAN discovery",
     "features.autoDiscovery.desc":
       "UDP broadcast finds nearby devices every 2 seconds. When broadcast is blocked, adaptive unicast keeps known peers visible.",
-    "features.qrPairing.title": "QR & short-code pairing",
+    "features.qrPairing.title": "QR code pairing",
     "features.qrPairing.desc":
-      "Pair across the room with a QR scan, or type a 6-digit code. The certificate fingerprint is verified during pairing.",
+      "Pair across the room with a QR scan. The certificate fingerprint is verified during pairing.",
     "features.trustedDevices.title": "Trusted device list",
     "features.trustedDevices.desc":
       "Once paired, devices reconnect silently. Revoke trust at any time from the device manager.",
@@ -508,7 +508,7 @@ export const ui = {
       "下载对应平台版本。首次启动时本地生成唯一设备证书，作为身份凭证。",
     "howItWorks.step2.title": "同一网络下配对",
     "howItWorks.step2.desc":
-      "同一 Wi-Fi 或局域网内的设备会自动 UDP 发现。首次扫码或输入短码确认即配对完成。",
+      "同一 Wi-Fi 或局域网内的设备会自动 UDP 发现。首次扫码确认即配对完成。",
     "howItWorks.step3.title": "拖文件，按发送",
     "howItWorks.step3.desc":
       "拖一个文件或 50 GB 文件夹都行。底层 TLS 连接池负责并发、断点续传与完整性校验。",
@@ -575,9 +575,9 @@ export const ui = {
     "features.autoDiscovery.title": "自动发现局域网设备",
     "features.autoDiscovery.desc":
       "UDP 广播每 2 秒发现附近设备。广播被防火墙拦截时，自适应单播继续保持已知设备在线。",
-    "features.qrPairing.title": "二维码 / 短码配对",
+    "features.qrPairing.title": "二维码配对",
     "features.qrPairing.desc":
-      "扫码或输入 6 位短码即可配对，配对过程中会校验对端证书指纹。",
+      "扫码即可配对，配对过程中会校验对端证书指纹。",
     "features.trustedDevices.title": "可信设备列表",
     "features.trustedDevices.desc":
       "配对一次，之后静默重连。可在设备管理中随时撤销信任。",

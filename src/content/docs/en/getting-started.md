@@ -26,10 +26,7 @@ Link2Send only talks over your LAN. Make sure both devices are on the **same Wi-
 
 Devices on the same LAN auto-discover each other within a few seconds via UDP. You'll see the other device appear in the contacts panel.
 
-The first time you connect, you must confirm the pairing. Pick whichever is most convenient:
-
-- **QR code** — scan the QR shown by one device with the other.
-- **Short code** — type the 6-digit code shown on one device into the other.
+The first time you connect, you must confirm the pairing: scan the QR code shown by one device with the other.
 
 Pairing pins the peer's certificate fingerprint, so future connections are silent and verified.
 

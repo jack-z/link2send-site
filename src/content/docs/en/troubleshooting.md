@@ -11,11 +11,11 @@ order: 4
 Run through the list in order — most cases land in the first three.
 
 1. **Same network?** Both devices need to be on the same LAN segment. A laptop on Wi-Fi and a phone on cellular won't see each other. A laptop on the 5 GHz SSID and a desktop on the 2.4 GHz SSID *usually* will, but only if the AP bridges them.
-2. **AP isolation?** Hotel, café and conference Wi-Fi commonly enable AP isolation, which blocks all peer-to-peer traffic. Switch to a personal hotspot, or pair via the 6-digit short code over a side channel.
+2. **AP isolation?** Hotel, café and conference Wi-Fi commonly enable AP isolation, which blocks all peer-to-peer traffic. Switch to a personal hotspot.
 3. **Firewall?** Allow Link2Send through the OS firewall:
    - **macOS** — System Settings → Network → Firewall → Options → allow `Link2Send`.
    - **Windows** — Windows Defender Firewall will prompt on first launch; click "Allow access" for both Private and Public networks if both apply.
-4. **Manual pairing.** If discovery is blocked but you can reach the peer's IP, you can still pair via QR code or the 6-digit short code. Once paired, Link2Send will reach the peer over the existing session.
+4. **Manual pairing.** If discovery is blocked but you can reach the peer's IP, you can still pair via QR code. Once paired, Link2Send will reach the peer over the existing session.
 
 ## "Receiving…" looks stuck
 

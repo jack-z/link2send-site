@@ -32,7 +32,7 @@ The most common causes:
 - A **firewall** is blocking UDP discovery or the TLS transfer port.
 - **AP isolation** is enabled on the Wi-Fi router (common in hotel/conference Wi-Fi).
 
-Try [troubleshooting](/en/docs/troubleshooting/) — or pair manually via QR code or the 6-digit short code.
+Try [troubleshooting](/en/docs/troubleshooting/) — or pair manually via QR code.
 
 ### What ports does Link2Send use?
 The app prefers **UDP 42424** for discovery and a **TCP/TLS port** for transfer. The transfer port is announced inside the discovery message, so it does not need to be a fixed value.
