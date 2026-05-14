@@ -9,6 +9,8 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
+type Verdict = "good" | "partial" | "bad";
+
 const cols = [
   { id: "l2s", labelKey: "compare.col.l2s", highlight: true },
   { id: "airdrop", labelKey: "compare.col.airdrop", highlight: false },
@@ -17,18 +19,54 @@ const cols = [
   { id: "cloud", labelKey: "compare.col.cloud", highlight: false },
 ];
 
-const rows = [
-  { id: "cross", labelKey: "compare.row.cross.label" },
-  { id: "size", labelKey: "compare.row.size.label" },
-  { id: "original", labelKey: "compare.row.original.label" },
-  { id: "cloud", labelKey: "compare.row.cloud.label" },
-  { id: "account", labelKey: "compare.row.account.label" },
-  { id: "encrypt", labelKey: "compare.row.encrypt.label" },
+type Row = {
+  id: string;
+  labelKey: string;
+  verdicts: Record<string, Verdict>;
+};
+
+const rows: Row[] = [
+  {
+    id: "cross",
+    labelKey: "compare.row.cross.label",
+    verdicts: { l2s: "good", airdrop: "bad", wechat: "partial", wetransfer: "partial", cloud: "partial" },
+  },
+  {
+    id: "size",
+    labelKey: "compare.row.size.label",
+    verdicts: { l2s: "good", airdrop: "good", wechat: "bad", wetransfer: "partial", cloud: "partial" },
+  },
+  {
+    id: "original",
+    labelKey: "compare.row.original.label",
+    verdicts: { l2s: "good", airdrop: "good", wechat: "bad", wetransfer: "good", cloud: "good" },
+  },
+  {
+    id: "cloud",
+    labelKey: "compare.row.cloud.label",
+    verdicts: { l2s: "good", airdrop: "good", wechat: "bad", wetransfer: "bad", cloud: "bad" },
+  },
+  {
+    id: "account",
+    labelKey: "compare.row.account.label",
+    verdicts: { l2s: "good", airdrop: "partial", wechat: "bad", wetransfer: "partial", cloud: "bad" },
+  },
+  {
+    id: "encrypt",
+    labelKey: "compare.row.encrypt.label",
+    verdicts: { l2s: "good", airdrop: "good", wechat: "partial", wetransfer: "partial", cloud: "partial" },
+  },
 ];
 
 function cellKey(rowId: string, colId: string): string {
   return `compare.row.${rowId}.${colId}`;
 }
+
+const verdictDot: Record<Verdict, string> = {
+  good: "bg-emerald-500 dark:bg-emerald-400",
+  partial: "bg-amber-500 dark:bg-amber-400",
+  bad: "bg-rose-500 dark:bg-rose-400",
+};
 ---
 
 <section class="bg-slate-50 py-20 sm:py-24 dark:bg-slate-900/40">
@@ -70,9 +108,9 @@ function cellKey(rowId: string, colId: string): string {
         <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
           {rows.map((row) => (
             <tr>
-              <td class="px-5 py-4 font-medium text-slate-900 dark:text-white">
+              <th scope="row" class="px-5 py-4 text-left font-medium text-slate-900 dark:text-white">
                 {t(row.labelKey as any)}
-              </td>
+              </th>
               {cols.map((c) => (
                 <td
                   class:list={[
@@ -80,7 +118,16 @@ function cellKey(rowId: string, colId: string): string {
                     c.highlight && "bg-primary-50/40 font-semibold text-primary-800 dark:bg-primary-950/20 dark:text-primary-200",
                   ]}
                 >
-                  {t(cellKey(row.id, c.id) as any)}
+                  <span class="flex items-start gap-2">
+                    <span
+                      class:list={[
+                        "mt-1.5 inline-block h-2 w-2 shrink-0 rounded-full",
+                        verdictDot[row.verdicts[c.id] ?? "partial"],
+                      ]}
+                      aria-hidden="true"
+                    ></span>
+                    <span>{t(cellKey(row.id, c.id) as any)}</span>
+                  </span>
                 </td>
               ))}
             </tr>
@@ -107,13 +154,21 @@ function cellKey(rowId: string, colId: string): string {
                 >
                   {t(c.labelKey as any)}
                 </span>
-                <span
-                  class:list={[
-                    "text-right",
-                    c.highlight ? "font-semibold text-primary-800 dark:text-primary-200" : "text-slate-700 dark:text-slate-300",
-                  ]}
-                >
-                  {t(cellKey(row.id, c.id) as any)}
+                <span class="flex items-start justify-end gap-2 text-right">
+                  <span
+                    class:list={[
+                      "mt-1.5 inline-block h-2 w-2 shrink-0 rounded-full",
+                      verdictDot[row.verdicts[c.id] ?? "partial"],
+                    ]}
+                    aria-hidden="true"
+                  ></span>
+                  <span
+                    class:list={[
+                      c.highlight ? "font-semibold text-primary-800 dark:text-primary-200" : "text-slate-700 dark:text-slate-300",
+                    ]}
+                  >
+                    {t(cellKey(row.id, c.id) as any)}
+                  </span>
                 </span>
               </li>
             ))}
